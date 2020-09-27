@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailItemViewController: UIViewController {
 
+    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var processingLabel: UILabel!
+    @IBOutlet weak var desc: UILabel!
+    
+    var currentBook: BookRealm? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.titleLabel.text = self.currentBook?.title
+        self.bookImageView.kf.setImage(with: URL(string: self.currentBook?.image ?? ""))
     }
     
 

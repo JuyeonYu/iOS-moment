@@ -18,7 +18,7 @@ class SearchItemViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    
+
     var books: [Book] = [] {
         didSet {
 //            tableView.reloadData()
