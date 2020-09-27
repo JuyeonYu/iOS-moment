@@ -7,22 +7,28 @@
 //
 
 import UIKit
+import RealmSwift
+import Kingfisher
+
+protocol MainViewControllerDelegate: class {
+    func adddData()
+}
 
 class MainViewController: UIViewController {
+    lazy var realm: Realm = {
+        return try! Realm()
+    }()
+    
+    let books: [Book] = []
 
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
-        
         self.collectionView.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ItemCollectionViewCell")
     }
-
-
 }
 
 extension MainViewController: UICollectionViewDelegate {
@@ -31,19 +37,24 @@ extension MainViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc: UIViewController
         if indexPath.row == 0 {
-            vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchItemViewController") as! SearchItemViewController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchItemViewController") as! SearchItemViewController
+            vc.delegate = self
+            self.present(vc, animated: true, completion: nil)
         } else {
-            vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailItemViewController") as! DetailItemViewController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailItemViewController") as! DetailItemViewController
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        if realm.objects(BookRealm.self).count == 0 {
+            return 1
+        } else {
+            return realm.objects(BookRealm.self).count + 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -51,11 +62,10 @@ extension MainViewController: UICollectionViewDataSource {
         if indexPath.row == 0 {
             cell.itemImageView.image = UIImage(systemName: "plus")
         } else {
-            if (indexPath.row % 3 == 0) {
-                cell.itemImageView.image = UIImage(named: "test1")
-            } else if (indexPath.row % 3 == 1) {
-                cell.itemImageView.image = UIImage(named: "test2")
-            } else if (indexPath.row % 3 == 2) {
+            let books = Array(realm.objects(BookRealm.self))
+            if let url = URL(string: books[indexPath.row - 1].image) {
+                cell.itemImageView.kf.setImage(with: url)
+            } else {
                 cell.itemImageView.image = UIImage(named: "test3")
             }
         }
@@ -65,6 +75,12 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.bounds.width / 5, height: self.view.bounds.height / 6)
+        return CGSize(width: self.view.bounds.width / 5, height: self.view.bounds.height / 5)
+    }
+}
+
+extension MainViewController: MainViewControllerDelegate {
+    func adddData() {
+        self.collectionView.reloadData()
     }
 }
