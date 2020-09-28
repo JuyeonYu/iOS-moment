@@ -33,6 +33,6 @@ class BookRealm: Object {
     @objc dynamic var pubdate = ""
     @objc dynamic var isbn = ""
     @objc dynamic var desc = ""
-//    @objc dynamic var desc = ""
-//    @objc dynamic var desc = ""
+    @objc dynamic var progress: Int = 0
+    @objc dynamic var memo = ""
 }
