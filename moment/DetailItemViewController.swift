@@ -30,21 +30,19 @@ class DetailItemViewController: UIViewController {
         self.titleLabel.text = self.currentBook?.title
         self.bookImageView.kf.setImage(with: URL(string: self.currentBook?.image ?? ""))
         
-        self.textView.text = "내용입력"
+        self.textView.text = Constant.detailTextFieldPlaceHolder
         textView.textColor = UIColor.lightGray
         
-        
         self.progressView.progress = Float(Float(self.currentBook!.progress) / 100)
-        
         self.processingLabel.text = Util.processingText(percent: self.progressView.progress)
     }
     
     func textViewSetupView() {
-        if textView.text == "내용입력" {
+        if textView.text == Constant.detailTextFieldPlaceHolder {
             textView.text = ""
             textView.textColor = UIColor.label
         } else if textView.text == "" {
-            textView.text = "내용입력"
+            textView.text = Constant.detailTextFieldPlaceHolder
             textView.textColor = UIColor.lightGray
         }
     }
