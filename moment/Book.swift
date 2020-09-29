@@ -10,16 +10,46 @@ import Foundation
 import RealmSwift
 
 struct Book {
-    var title = ""
-    var link = ""
-    var image = ""
-    var author = ""
-    var price = ""
-    var discount = ""
-    var publisher = ""
-    var pubdate = ""
-    var isbn = ""
-    var desc = ""
+    let title: String
+    let link: String
+    let image: String
+    let author: String
+    let price: String
+    let discount: String
+    let publisher: String
+    let pubdate: String
+    let isbn: String
+    let desc: String
+    var progress: Int?
+    var memo: String?
+    
+    init(bookRealm: BookRealm) {
+        self.title = bookRealm.title
+        self.link = bookRealm.link
+        self.image = bookRealm.image
+        self.author = bookRealm.author
+        self.price = bookRealm.price
+        self.discount = bookRealm.discount
+        self.publisher = bookRealm.publisher
+        self.pubdate = bookRealm.pubdate
+        self.isbn = bookRealm.isbn
+        self.desc = bookRealm.desc
+        self.progress = bookRealm.progress
+        self.memo = bookRealm.memo
+    }
+    
+    init(naverBook: NaverBookItem) {
+        self.title = naverBook.title.withoutHtml
+        self.link = naverBook.link
+        self.image = naverBook.image
+        self.author = naverBook.author
+        self.price = naverBook.price
+        self.discount = naverBook.discount
+        self.publisher = naverBook.publisher
+        self.pubdate = naverBook.pubdate
+        self.isbn = naverBook.isbn
+        self.desc = naverBook.itemDescription.withoutHtml
+    }
 }
 
 class BookRealm: Object {
@@ -40,10 +70,10 @@ class BookRealm: Object {
 struct NaverBook: Codable {
     let lastBuildDate: String
     let total, start, display: Int
-    let items: [Item]
+    let items: [NaverBookItem]
 }
 
-struct Item: Codable {
+struct NaverBookItem: Codable {
     let title: String
     let link: String
     let image: String

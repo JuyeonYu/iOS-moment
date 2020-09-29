@@ -8,12 +8,17 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class DetailItemViewController: UIViewController {
+    
+    lazy var realm: Realm = {
+        return try! Realm()
+    }()
 
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var memoTextView: UITextView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var processingLabel: UILabel!
     
@@ -22,7 +27,7 @@ class DetailItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.textView.delegate = self
+        self.memoTextView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,20 +35,32 @@ class DetailItemViewController: UIViewController {
         self.titleLabel.text = self.currentBook?.title
         self.bookImageView.kf.setImage(with: URL(string: self.currentBook?.image ?? ""))
         
-        self.textView.text = Constant.detailTextFieldPlaceHolder
-        textView.textColor = UIColor.lightGray
+        self.memoTextView.text = Constant.detailTextFieldPlaceHolder
+        memoTextView.textColor = UIColor.lightGray
         
         self.progressView.progress = Float(Float(self.currentBook!.progress) / 100)
         self.processingLabel.text = Util.processingText(percent: self.progressView.progress)
+        
+        let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook!.title)'").first
+        self.memoTextView.text = book?.memo
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook!.title)'").first
+        try! self.realm.write {
+            book?.memo = self.memoTextView.text
+        }
     }
     
     func textViewSetupView() {
-        if textView.text == Constant.detailTextFieldPlaceHolder {
-            textView.text = ""
-            textView.textColor = UIColor.label
-        } else if textView.text == "" {
-            textView.text = Constant.detailTextFieldPlaceHolder
-            textView.textColor = UIColor.lightGray
+        if memoTextView.text == Constant.detailTextFieldPlaceHolder {
+            memoTextView.text = ""
+            memoTextView.textColor = UIColor.label
+        } else if memoTextView.text == "" {
+            memoTextView.text = Constant.detailTextFieldPlaceHolder
+            memoTextView.textColor = UIColor.lightGray
         }
     }
 }

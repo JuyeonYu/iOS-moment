@@ -18,8 +18,7 @@ class SelectBookMarkViewController: UIViewController {
         let roundedCurrent = (slider.value/Float(stepCount)).rounded()
         let newValue = Int(roundedCurrent) * stepCount
         slider.setValue(Float(newValue), animated: true)
-        
-        self.setProcessingLabel(value: newValue)
+        self.processingLabel.text = Util.processingText(percent: slider.value)
     }
     @IBOutlet weak var saveButton: UIButton!
     weak var delegate: SearchItemViewControllerDelegate?

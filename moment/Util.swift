@@ -13,11 +13,11 @@ class Util {
     class func processingText (percent: Float) -> String{
         if percent == 0 {
             return "이제 보기 시작했어요"
-        } else if percent == 0.25 {
+        } else if percent == 25 {
             return "조금 봤어요"
-        } else if percent == 0.5 {
+        } else if percent == 50 {
             return "중간쯤 봤어요"
-        } else if percent == 0.75 {
+        } else if percent == 75 {
             return "거의 다 봤어요"
         } else {
             return "다 봤어요!"

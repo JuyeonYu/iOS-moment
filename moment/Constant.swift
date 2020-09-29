@@ -9,5 +9,5 @@
 import Foundation
 
 class Constant {
-    static let detailTextFieldPlaceHolder = "내용입력"
+    static let detailTextFieldPlaceHolder = "메모"
 }

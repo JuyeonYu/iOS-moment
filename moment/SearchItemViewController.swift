@@ -71,16 +71,7 @@ extension SearchItemViewController: UISearchBarDelegate {
                     print(myURL)
                 }
                 
-                let book: Book = Book(title: naverBook.title.withoutHtml,
-                                      link: naverBook.link,
-                                      image: naverBook.image,
-                                      author: naverBook.author,
-                                      price: naverBook.price,
-                                      discount: naverBook.discount,
-                                      publisher: naverBook.publisher,
-                                      pubdate: naverBook.pubdate,
-                                      isbn: naverBook.isbn,
-                                      desc: naverBook.itemDescription.withoutHtml)
+                let book: Book = Book(naverBook: naverBook)
                 self.books.append(book)
             }
             self.showedItemNumber = self.books.count
