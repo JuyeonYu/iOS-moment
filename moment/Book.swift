@@ -20,7 +20,7 @@ struct Book {
     let pubdate: String
     let isbn: String
     let desc: String
-    var progress: Int?
+    var progress: Float?
     var memo: String?
     
     init(bookRealm: BookRealm) {
@@ -63,7 +63,7 @@ class BookRealm: Object {
     @objc dynamic var pubdate = ""
     @objc dynamic var isbn = ""
     @objc dynamic var desc = ""
-    @objc dynamic var progress: Int = 0
+    @objc dynamic var progress: Float = 0
     @objc dynamic var memo = ""
 }
 

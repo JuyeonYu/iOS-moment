@@ -11,7 +11,7 @@ import Kingfisher
 import RealmSwift
 
 protocol SearchItemViewControllerDelegate: class {
-    func saveData(value: Int)
+    func saveData(value: Float)
 }
 
 class SearchItemViewController: UIViewController {
@@ -159,7 +159,7 @@ extension SearchItemViewController: UITableViewDataSource {
 }
 
 extension SearchItemViewController: SearchItemViewControllerDelegate {
-    func saveData(value: Int) {
+    func saveData(value: Float) {
         let bookRealm = BookRealm()
         guard let book = selectedBook else { return }
         bookRealm.title = book.title

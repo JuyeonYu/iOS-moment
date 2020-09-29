@@ -25,7 +25,7 @@ class SelectBookMarkViewController: UIViewController {
     
     @IBAction func didTapSaveButton(_ sender: Any) {
         self.dismiss(animated: false) {
-            self.delegate?.saveData(value: Int(self.slider.value))
+            self.delegate?.saveData(value: self.slider.value)
         }
     }
     

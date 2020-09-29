@@ -19,8 +19,15 @@ class DetailItemViewController: UIViewController {
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var memoTextView: UITextView!
-    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var processingLabel: UILabel!
+    @IBOutlet weak var slider: UISlider!
+    @IBAction func didSliderMove(_ sender: Any) {
+        let stepCount = 25
+        let roundedCurrent = (slider.value/Float(stepCount)).rounded()
+        let newValue = Int(roundedCurrent) * stepCount
+        slider.setValue(Float(newValue), animated: true)
+        self.processingLabel.text = Util.processingText(percent: slider.value)
+    }
     
     var currentBook: BookRealm? = nil
     
@@ -32,17 +39,17 @@ class DetailItemViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.titleLabel.text = self.currentBook?.title
         self.bookImageView.kf.setImage(with: URL(string: self.currentBook?.image ?? ""))
         
         self.memoTextView.text = Constant.detailTextFieldPlaceHolder
         memoTextView.textColor = UIColor.lightGray
-        
-        self.progressView.progress = Float(Float(self.currentBook!.progress) / 100)
-        self.processingLabel.text = Util.processingText(percent: self.progressView.progress)
-        
+                
         let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook!.title)'").first
-        self.memoTextView.text = book?.memo
+        self.memoTextView.text = book?.memo == "" ? Constant.detailTextFieldPlaceHolder : book?.memo
+        self.slider.value = book!.progress
+        self.processingLabel.text = Util.processingText(percent: self.slider.value)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,6 +58,7 @@ class DetailItemViewController: UIViewController {
         let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook!.title)'").first
         try! self.realm.write {
             book?.memo = self.memoTextView.text
+            book?.progress = self.slider.value
         }
     }
     

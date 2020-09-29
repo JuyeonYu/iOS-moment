@@ -81,11 +81,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i5U-mb-2db">
-                                        <rect key="frame" x="0.0" y="184" width="394" height="4"/>
-                                    </progressView>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9Qy-e9-4ka">
-                                        <rect key="frame" x="-2" y="208" width="398" height="31"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="100" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Qy-e9-4ka">
+                                        <rect key="frame" x="-2" y="184" width="398" height="55"/>
+                                        <connections>
+                                            <action selector="didSliderMove:" destination="Fgg-uP-c1a" eventType="valueChanged" id="Z9A-z9-q3a"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFj-0K-EeU">
                                         <rect key="frame" x="0.0" y="258" width="394" height="18"/>
@@ -116,7 +116,7 @@
                         <outlet property="bookImageView" destination="Slw-Eh-I6Z" id="rfN-ir-De2"/>
                         <outlet property="memoTextView" destination="8vg-Js-2XZ" id="HMj-YE-6rg"/>
                         <outlet property="processingLabel" destination="hFj-0K-EeU" id="OHs-L3-eI2"/>
-                        <outlet property="progressView" destination="i5U-mb-2db" id="ZSv-Id-ddW"/>
+                        <outlet property="slider" destination="9Qy-e9-4ka" id="I3I-e5-Yj4"/>
                         <outlet property="titleLabel" destination="bdE-vG-6uw" id="QLZ-wF-bvd"/>
                     </connections>
                 </viewController>
