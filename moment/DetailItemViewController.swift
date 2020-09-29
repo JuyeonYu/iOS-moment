@@ -15,6 +15,7 @@ class DetailItemViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var processingLabel: UILabel!
     
     var currentBook: BookRealm? = nil
     
@@ -32,7 +33,10 @@ class DetailItemViewController: UIViewController {
         self.textView.text = "내용입력"
         textView.textColor = UIColor.lightGray
         
+        
         self.progressView.progress = Float(Float(self.currentBook!.progress) / 100)
+        
+        self.processingLabel.text = Util.processingText(percent: self.progressView.progress)
     }
     
     func textViewSetupView() {
@@ -44,7 +48,6 @@ class DetailItemViewController: UIViewController {
             textView.textColor = UIColor.lightGray
         }
     }
-
 }
 
 extension DetailItemViewController: UITextViewDelegate {
@@ -56,12 +59,5 @@ extension DetailItemViewController: UITextViewDelegate {
         if textView.text == "" {
             self.textViewSetupView()
         }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-        }
-        return true
     }
 }

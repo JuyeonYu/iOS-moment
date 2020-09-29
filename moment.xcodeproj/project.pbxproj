@@ -102,10 +102,10 @@
 			children = (
 				B5F4D12F251C6A1E005D3502 /* application */,
 				B5F4D11F251C5E18005D3502 /* MainViewController.swift */,
+				B5F4D137251C84C8005D3502 /* SearchItemViewController.swift */,
 				B5F4D133251C6ADA005D3502 /* ItemCollectionViewCell.swift */,
 				B5F4D134251C6ADA005D3502 /* ItemCollectionViewCell.xib */,
 				B5F4D121251C5E18005D3502 /* Main.storyboard */,
-				B5F4D137251C84C8005D3502 /* SearchItemViewController.swift */,
 				B5F4D139251C84DD005D3502 /* SearchItemTableViewCell.swift */,
 				B5F4D13A251C84DD005D3502 /* SearchItemTableViewCell.xib */,
 				B5F4D155251C944B005D3502 /* DetailItemViewController.swift */,
