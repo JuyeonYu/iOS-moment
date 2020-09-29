@@ -8,43 +8,69 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class DetailItemViewController: UIViewController {
+    
+    lazy var realm: Realm = {
+        return try! Realm()
+    }()
 
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var memoTextView: UITextView!
+    @IBOutlet weak var processingLabel: UILabel!
+    @IBOutlet weak var slider: UISlider!
+    @IBAction func didSliderMove(_ sender: Any) {
+        let stepCount = 25
+        let roundedCurrent = (slider.value/Float(stepCount)).rounded()
+        let newValue = Int(roundedCurrent) * stepCount
+        slider.setValue(Float(newValue), animated: true)
+        self.processingLabel.text = Util.processingText(percent: slider.value)
+    }
     
     var currentBook: BookRealm? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.textView.delegate = self
+        self.memoTextView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.titleLabel.text = self.currentBook?.title
         self.bookImageView.kf.setImage(with: URL(string: self.currentBook?.image ?? ""))
         
-        self.textView.text = "내용입력"
-        textView.textColor = UIColor.lightGray
+        self.memoTextView.text = Constant.detailTextFieldPlaceHolder
+        memoTextView.textColor = UIColor.lightGray
+                
+        let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook!.title)'").first
+        self.memoTextView.text = book?.memo == "" ? Constant.detailTextFieldPlaceHolder : book?.memo
+        self.slider.value = book!.progress
+        self.processingLabel.text = Util.processingText(percent: self.slider.value)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        self.progressView.progress = Float(Float(self.currentBook!.progress) / 100)
+        let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook!.title)'").first
+        try! self.realm.write {
+            book?.memo = self.memoTextView.text
+            book?.progress = self.slider.value
+        }
     }
     
     func textViewSetupView() {
-        if textView.text == "내용입력" {
-            textView.text = ""
-            textView.textColor = UIColor.label
-        } else if textView.text == "" {
-            textView.text = "내용입력"
-            textView.textColor = UIColor.lightGray
+        if memoTextView.text == Constant.detailTextFieldPlaceHolder {
+            memoTextView.text = ""
+            memoTextView.textColor = UIColor.label
+        } else if memoTextView.text == "" {
+            memoTextView.text = Constant.detailTextFieldPlaceHolder
+            memoTextView.textColor = UIColor.lightGray
         }
     }
-
 }
 
 extension DetailItemViewController: UITextViewDelegate {
@@ -56,12 +82,5 @@ extension DetailItemViewController: UITextViewDelegate {
         if textView.text == "" {
             self.textViewSetupView()
         }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-        }
-        return true
     }
 }
