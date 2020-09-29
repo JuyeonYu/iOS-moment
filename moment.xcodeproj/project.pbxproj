@@ -22,7 +22,6 @@
 		C3832914B604F03DA441A342 /* Pods_moment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ECC718B70DD888A8446C3E /* Pods_moment.framework */; };
 		CE0C995825206CA00094AE60 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C995725206CA00094AE60 /* Book.swift */; };
 		CE0C996025206E4D0094AE60 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C995F25206E4D0094AE60 /* NetworkManager.swift */; };
-		CE0C996325206FE50094AE60 /* NaverBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C996225206FE50094AE60 /* NaverBook.swift */; };
 		CE0C996625207C610094AE60 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C996525207C610094AE60 /* Util.swift */; };
 		CE0C99BF252223770094AE60 /* SelectBookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C99BE252223770094AE60 /* SelectBookMarkViewController.swift */; };
 /* End PBXBuildFile section */
@@ -45,7 +44,6 @@
 		B5F4D155251C944B005D3502 /* DetailItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemViewController.swift; sourceTree = "<group>"; };
 		CE0C995725206CA00094AE60 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		CE0C995F25206E4D0094AE60 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		CE0C996225206FE50094AE60 /* NaverBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverBook.swift; sourceTree = "<group>"; };
 		CE0C996525207C610094AE60 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		CE0C99BE252223770094AE60 /* SelectBookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBookMarkViewController.swift; sourceTree = "<group>"; };
 		E8B18DDB38C9FDA8CDA0B00D /* Pods-moment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moment.debug.xcconfig"; path = "Target Support Files/Pods-moment/Pods-moment.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				CE0C995F25206E4D0094AE60 /* NetworkManager.swift */,
 				CE0C99BE252223770094AE60 /* SelectBookMarkViewController.swift */,
 				CE0C995725206CA00094AE60 /* Book.swift */,
-				CE0C996225206FE50094AE60 /* NaverBook.swift */,
 				B5F4D124251C5E1B005D3502 /* Assets.xcassets */,
 				B5F4D126251C5E1B005D3502 /* LaunchScreen.storyboard */,
 				CE0C996525207C610094AE60 /* Util.swift */,
@@ -251,7 +248,6 @@
 			files = (
 				CE0C996625207C610094AE60 /* Util.swift in Sources */,
 				CE0C996025206E4D0094AE60 /* NetworkManager.swift in Sources */,
-				CE0C996325206FE50094AE60 /* NaverBook.swift in Sources */,
 				CE0C995825206CA00094AE60 /* Book.swift in Sources */,
 				B5F4D138251C84C8005D3502 /* SearchItemViewController.swift in Sources */,
 				B5F4D120251C5E18005D3502 /* MainViewController.swift in Sources */,
