@@ -10,6 +10,10 @@ import UIKit
 
 class SearchItemTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

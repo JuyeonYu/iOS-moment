@@ -7,24 +7,61 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailItemViewController: UIViewController {
 
+    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var progressView: UIProgressView!
+    
+    var currentBook: BookRealm? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.textView.delegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.titleLabel.text = self.currentBook?.title
+        self.bookImageView.kf.setImage(with: URL(string: self.currentBook?.image ?? ""))
+        
+        self.textView.text = "내용입력"
+        textView.textColor = UIColor.lightGray
+        
+        self.progressView.progress = Float(Float(self.currentBook!.progress) / 100)
     }
-    */
+    
+    func textViewSetupView() {
+        if textView.text == "내용입력" {
+            textView.text = ""
+            textView.textColor = UIColor.label
+        } else if textView.text == "" {
+            textView.text = "내용입력"
+            textView.textColor = UIColor.lightGray
+        }
+    }
 
+}
+
+extension DetailItemViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.textViewSetupView()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            self.textViewSetupView()
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+        }
+        return true
+    }
 }
