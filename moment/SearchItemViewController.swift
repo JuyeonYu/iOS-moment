@@ -25,13 +25,18 @@ class SearchItemViewController: UIViewController {
 
     var books: [Book] = [] {
         didSet {
-//            tableView.reloadData()
         }
     }
+    
+        var movies: [Movie] = [] {
+            didSet {
+            }
+        }
     
     var totalItemNumber: Int = 0
     var showedItemNumber: Int = 0
     var selectedBook: Book? = nil
+    var selectedMovie: Movie? = nil
     
     weak var delegate: MainViewControllerDelegate?
     
@@ -57,7 +62,21 @@ extension SearchItemViewController: UISearchBarDelegate {
         }
     }
     
-    fileprivate func requestNaverSearchAPI(_ keyword: String, start: Int) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let keyword = searchBar.text else { return }
+        if searchBar.selectedScopeButtonIndex == 0 {
+            requestNaverBookSearchAPI(keyword, start: 1)
+        } else {
+            requestNaverMovieSearchAPI(keyword, start: 1)
+        }
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    fileprivate func requestNaverBookSearchAPI(_ keyword: String, start: Int) {
         NetworkManager.sharedInstance.requestNaverBookList(keyword: keyword, start: start) { (result) in
             guard let naverBooks = result as? NaverBook else {
                 return
@@ -79,14 +98,26 @@ extension SearchItemViewController: UISearchBarDelegate {
         }
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let keyword = searchBar.text else { return }
-        
-        requestNaverSearchAPI(keyword, start: 1)
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    fileprivate func requestNaverMovieSearchAPI(_ keyword: String, start: Int) {
+        NetworkManager.sharedInstance.requestNaverMovieList(keyword: keyword, start: start) { (result) in
+            guard let naverMovies = result as? NaverMovie else {
+                return
+            }
+            
+            self.totalItemNumber = naverMovies.total
+            
+            for naverMovie in naverMovies.items {
+                if let encoded  = naverMovie.image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
+                   let myURL = URL(string: encoded) {
+                    print(myURL)
+                }
+                
+                let movie: Movie = Movie(naverMovie: naverMovie)
+                self.movies.append(movie)
+            }
+            self.showedItemNumber = self.books.count
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -136,23 +167,44 @@ extension SearchItemViewController: UITableViewDelegate {
 
 extension SearchItemViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books.count
+        if searchBar.selectedScopeButtonIndex == 0 {
+            return books.count
+        } else {
+            return movies.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchItemTableViewCell", for: indexPath) as! SearchItemTableViewCell
-        cell.titleLabel.text = self.books[indexPath.row].title
-        cell.descriptionLabel.text = self.books[indexPath.row].desc
         
-        if let imageURL = URL(string: self.books[indexPath.row].image) {
-            cell.bookImageView.kf.setImage(with:imageURL)
+        if searchBar.selectedScopeButtonIndex == 0 {
+            cell.titleLabel.text = self.books[indexPath.row].title
+            cell.descriptionLabel.text = self.books[indexPath.row].desc
+            
+            if let imageURL = URL(string: self.books[indexPath.row].image) {
+                cell.bookImageView.kf.setImage(with:imageURL)
+            } else {
+                cell.bookImageView.image = UIImage(named: "test3")
+            }
+            
+            if indexPath.row == self.books.count - 1
+                && self.showedItemNumber < self.totalItemNumber {
+                requestNaverBookSearchAPI(self.searchBar.text!, start: (indexPath.row / 19) + 1)
+            }
         } else {
-            cell.bookImageView.image = UIImage(named: "test3")
-        }
-        
-        if indexPath.row == self.books.count - 1
-            && self.showedItemNumber < self.totalItemNumber {
-            requestNaverSearchAPI(self.searchBar.text!, start: (indexPath.row / 19) + 1)
+            cell.titleLabel.text = self.movies[indexPath.row].title
+            cell.descriptionLabel.text = self.movies[indexPath.row].subtitle
+            
+            if let imageURL = URL(string: self.movies[indexPath.row].image) {
+                cell.bookImageView.kf.setImage(with:imageURL)
+            } else {
+                cell.bookImageView.image = UIImage(named: "test3")
+            }
+            
+            if indexPath.row == self.books.count - 1
+                && self.showedItemNumber < self.totalItemNumber {
+                requestNaverMovieSearchAPI(self.searchBar.text!, start: (indexPath.row / 19) + 1)
+            }
         }
         return cell
     }
