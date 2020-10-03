@@ -7,24 +7,80 @@
 //
 
 import UIKit
+import Kingfisher
+import RealmSwift
 
 class DetailItemViewController: UIViewController {
+    
+    lazy var realm: Realm = {
+        return try! Realm()
+    }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var memoTextView: UITextView!
+    @IBOutlet weak var processingLabel: UILabel!
+    @IBOutlet weak var slider: UISlider!
+    @IBAction func didSliderMove(_ sender: Any) {
+        let stepCount = 25
+        let roundedCurrent = (slider.value/Float(stepCount)).rounded()
+        let newValue = Int(roundedCurrent) * stepCount
+        slider.setValue(Float(newValue), animated: true)
+        self.processingLabel.text = Util.processingText(percent: slider.value)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    var currentBook: BookRealm? = nil
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.memoTextView.delegate = self
     }
-    */
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.titleLabel.text = self.currentBook?.title
+        self.bookImageView.kf.setImage(with: URL(string: self.currentBook?.image ?? ""))
+        
+        self.memoTextView.text = Constant.detailTextFieldPlaceHolder
+        memoTextView.textColor = UIColor.lightGray
+                
+        let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook!.title)'").first
+        self.memoTextView.text = book?.memo == "" ? Constant.detailTextFieldPlaceHolder : book?.memo
+        self.slider.value = book!.progress
+        self.processingLabel.text = Util.processingText(percent: self.slider.value)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook!.title)'").first
+        try! self.realm.write {
+            book?.memo = self.memoTextView.text
+            book?.progress = self.slider.value
+        }
+    }
+    
+    func textViewSetupView() {
+        if memoTextView.text == Constant.detailTextFieldPlaceHolder {
+            memoTextView.text = ""
+            memoTextView.textColor = UIColor.label
+        } else if memoTextView.text == "" {
+            memoTextView.text = Constant.detailTextFieldPlaceHolder
+            memoTextView.textColor = UIColor.lightGray
+        }
+    }
+}
 
+extension DetailItemViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.textViewSetupView()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            self.textViewSetupView()
+        }
+    }
 }
