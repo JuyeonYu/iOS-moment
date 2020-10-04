@@ -19,6 +19,7 @@
 		B5F4D13B251C84DD005D3502 /* SearchItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4D139251C84DD005D3502 /* SearchItemTableViewCell.swift */; };
 		B5F4D13C251C84DD005D3502 /* SearchItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F4D13A251C84DD005D3502 /* SearchItemTableViewCell.xib */; };
 		B5F4D156251C944B005D3502 /* DetailItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4D155251C944B005D3502 /* DetailItemViewController.swift */; };
+		B5FC7DD7252846FC00B1E096 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC7DD6252846FC00B1E096 /* Movie.swift */; };
 		C3832914B604F03DA441A342 /* Pods_moment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53ECC718B70DD888A8446C3E /* Pods_moment.framework */; };
 		CE0C995825206CA00094AE60 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C995725206CA00094AE60 /* Book.swift */; };
 		CE0C996025206E4D0094AE60 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C995F25206E4D0094AE60 /* NetworkManager.swift */; };
@@ -43,6 +44,7 @@
 		B5F4D139251C84DD005D3502 /* SearchItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemTableViewCell.swift; sourceTree = "<group>"; };
 		B5F4D13A251C84DD005D3502 /* SearchItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchItemTableViewCell.xib; sourceTree = "<group>"; };
 		B5F4D155251C944B005D3502 /* DetailItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemViewController.swift; sourceTree = "<group>"; };
+		B5FC7DD6252846FC00B1E096 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		CE0C995725206CA00094AE60 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		CE0C995F25206E4D0094AE60 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CE0C996525207C610094AE60 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				CE0C995F25206E4D0094AE60 /* NetworkManager.swift */,
 				CE0C99BE252223770094AE60 /* SelectBookMarkViewController.swift */,
 				CE0C995725206CA00094AE60 /* Book.swift */,
+				B5FC7DD6252846FC00B1E096 /* Movie.swift */,
 				B5F4D124251C5E1B005D3502 /* Assets.xcassets */,
 				B5F4D126251C5E1B005D3502 /* LaunchScreen.storyboard */,
 				CE0C996525207C610094AE60 /* Util.swift */,
@@ -257,6 +260,7 @@
 				CE0C99BF252223770094AE60 /* SelectBookMarkViewController.swift in Sources */,
 				B5F4D135251C6ADA005D3502 /* ItemCollectionViewCell.swift in Sources */,
 				B5F4D11C251C5E18005D3502 /* AppDelegate.swift in Sources */,
+				B5FC7DD7252846FC00B1E096 /* Movie.swift in Sources */,
 				B5F4D156251C944B005D3502 /* DetailItemViewController.swift in Sources */,
 				B5F4D13B251C84DD005D3502 /* SearchItemTableViewCell.swift in Sources */,
 				B5F4D11E251C5E18005D3502 /* SceneDelegate.swift in Sources */,
