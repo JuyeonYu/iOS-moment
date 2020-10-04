@@ -78,6 +78,16 @@ extension SearchItemViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        print("selected index: \(selectedScope)")
+        searchBar.text = ""
+        if selectedScope == 0 {
+            books.removeAll()
+        } else {
+            movies.removeAll()
+        }
+    }
+    
     fileprivate func requestNaverBookSearchAPI(_ keyword: String, start: Int) {
         NetworkManager.sharedInstance.requestNaverBookList(keyword: keyword, start: start) { (result) in
             guard let naverBooks = result as? NaverBook else {
@@ -118,7 +128,7 @@ extension SearchItemViewController: UISearchBarDelegate {
                 tempMovies.append(movie)
             }
             self.showedItemNumber = self.books.count
-            movies = tempMovies
+            self.movies = tempMovies
         }
     }
 }
