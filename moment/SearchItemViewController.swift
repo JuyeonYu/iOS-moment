@@ -25,11 +25,13 @@ class SearchItemViewController: UIViewController {
 
     var books: [Book] = [] {
         didSet {
+            self.tableView.reloadData()
         }
     }
     
         var movies: [Movie] = [] {
             didSet {
+                self.tableView.reloadData()
             }
         }
     
@@ -51,6 +53,7 @@ class SearchItemViewController: UIViewController {
         
         searchBar.scopeButtonTitles?[0] = "책/만화"
         searchBar.scopeButtonTitles?[1] = "영화/드라마"
+        
     }
 }
 
@@ -58,7 +61,6 @@ extension SearchItemViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             self.books.removeAll()
-            self.tableView.reloadData()
         }
     }
     
@@ -83,7 +85,7 @@ extension SearchItemViewController: UISearchBarDelegate {
             }
             
             self.totalItemNumber = naverBooks.total
-            
+            var tempBooks: [Book] = []
             for naverBook in naverBooks.items {
                 if let encoded  = naverBook.image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
                    let myURL = URL(string: encoded) {
@@ -91,10 +93,10 @@ extension SearchItemViewController: UISearchBarDelegate {
                 }
                 
                 let book: Book = Book(naverBook: naverBook)
-                self.books.append(book)
+                tempBooks.append(book)
             }
             self.showedItemNumber = self.books.count
-            self.tableView.reloadData()
+            self.books = tempBooks
         }
     }
     
@@ -105,7 +107,7 @@ extension SearchItemViewController: UISearchBarDelegate {
             }
             
             self.totalItemNumber = naverMovies.total
-            
+            var tempMovies: [Movie] = []
             for naverMovie in naverMovies.items {
                 if let encoded  = naverMovie.image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
                    let myURL = URL(string: encoded) {
@@ -113,10 +115,10 @@ extension SearchItemViewController: UISearchBarDelegate {
                 }
                 
                 let movie: Movie = Movie(naverMovie: naverMovie)
-                self.movies.append(movie)
+                tempMovies.append(movie)
             }
             self.showedItemNumber = self.books.count
-            self.tableView.reloadData()
+            movies = tempMovies
         }
     }
 }
