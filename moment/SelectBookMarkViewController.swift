@@ -32,26 +32,10 @@ class SelectBookMarkViewController: UIViewController {
     @IBOutlet weak var guideLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         saveButton.layer.cornerRadius = 0.5 * saveButton.bounds.size.height
-    }
-    
-    func setProcessingLabel(value: Int) {
-        if value == 0 {
-            self.processingLabel.text = "이제 보기 시작했어요"
-        } else if value == 25 {
-            self.processingLabel.text = "조금 봤어요"
-        } else if value == 50 {
-            self.processingLabel.text = "중간쯤 봤어요"
-        } else if value == 75 {
-            self.processingLabel.text = "거의 다 봤어요"
-        } else {
-            self.processingLabel.text = "다 봤어요!"
-        }
     }
 }
