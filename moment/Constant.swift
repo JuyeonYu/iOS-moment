@@ -11,3 +11,7 @@ import Foundation
 class Constant {
     static let detailTextFieldPlaceHolder = "메모"
 }
+
+enum NaverSearchType: CaseIterable {
+    case Book, Movie
+}

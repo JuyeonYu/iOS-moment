@@ -11,7 +11,7 @@ import Kingfisher
 import RealmSwift
 
 protocol SearchItemViewControllerDelegate: class {
-    func saveData(value: Float)
+    func saveData(value: Float, type: NaverSearchType)
 }
 
 class SearchItemViewController: UIViewController {
@@ -53,7 +53,6 @@ class SearchItemViewController: UIViewController {
         
         searchBar.scopeButtonTitles?[0] = "책/만화"
         searchBar.scopeButtonTitles?[1] = "영화/드라마"
-        
     }
 }
 
@@ -137,8 +136,14 @@ extension SearchItemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectBookMarkViewController") as! SelectBookMarkViewController
         vc.delegate = self
+        vc.selectedType = searchBar.selectedScopeButtonIndex == 0 ? .Book : .Movie
         self.present(vc, animated: true, completion: nil)
-        selectedBook = self.books[indexPath.row]
+        
+        if searchBar.selectedScopeButtonIndex == 0 {
+            selectedBook = self.books[indexPath.row]
+        } else {
+            selectedMovie = self.movies[indexPath.row]
+        }
     }
 }
 
@@ -188,23 +193,40 @@ extension SearchItemViewController: UITableViewDataSource {
 }
 
 extension SearchItemViewController: SearchItemViewControllerDelegate {
-    func saveData(value: Float) {
-        let bookRealm = BookRealm()
-        guard let book = selectedBook else { return }
-        bookRealm.title = book.title
-        bookRealm.link = book.link
-        bookRealm.image = book.image
-        bookRealm.author = book.author
-        bookRealm.price = book.price
-        bookRealm.discount = book.discount
-        bookRealm.publisher = book.publisher
-        bookRealm.pubdate = book.pubdate
-        bookRealm.isbn = book.isbn
-        bookRealm.desc = book.desc
-        bookRealm.progress = value
+    func saveData(value: Float, type: NaverSearchType) {
+        switch type {
+        case .Book:
+            let bookRealm = BookRealm()
+            guard let book = selectedBook else { return }
+            bookRealm.title = book.title
+            bookRealm.link = book.link
+            bookRealm.image = book.image
+            bookRealm.author = book.author
+            bookRealm.price = book.price
+            bookRealm.discount = book.discount
+            bookRealm.publisher = book.publisher
+            bookRealm.pubdate = book.pubdate
+            bookRealm.isbn = book.isbn
+            bookRealm.desc = book.desc
+            bookRealm.progress = value
 
-        try! self.realm.write {
-            self.realm.add(bookRealm)
+            try! self.realm.write {
+                self.realm.add(bookRealm)
+            }
+            
+        case .Movie:
+            let movieRealm = MovieRealm()
+            guard let movie = selectedMovie else { return }
+            movieRealm.title = movie.title
+            movieRealm.link = movie.link
+            movieRealm.image = movie.image
+            movieRealm.subtitle = movie.subtitle
+            movieRealm.pubdate = movie.pubdate
+            movieRealm.progress = value
+
+            try! self.realm.write {
+                self.realm.add(movieRealm)
+            }
         }
 
         self.dismiss(animated: false) {

@@ -9,7 +9,7 @@
 import UIKit
 
 class SelectBookMarkViewController: UIViewController {
-
+    var selectedType: NaverSearchType = .Book
     @IBOutlet weak var processingLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
     @IBAction func didSliderMove(_ sender: Any) {
@@ -25,7 +25,7 @@ class SelectBookMarkViewController: UIViewController {
     
     @IBAction func didTapSaveButton(_ sender: Any) {
         self.dismiss(animated: false) {
-            self.delegate?.saveData(value: self.slider.value)
+            self.delegate?.saveData(value: self.slider.value, type: self.selectedType)
         }
     }
     
