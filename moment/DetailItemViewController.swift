@@ -43,6 +43,9 @@ class DetailItemViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(deleteItem))
+
         switch currentItemType {
         case .Book:
             titleLabel.text = currentBook.title
@@ -56,6 +59,34 @@ class DetailItemViewController: UIViewController {
             self.slider.value = currentMovie.progress!
         }
         self.processingLabel.text = Util.processingText(percent: self.slider.value)
+        memoTextView.textColor = memoTextView.text == "" || memoTextView.text == Constant.detailTextFieldPlaceHolder ? UIColor.systemGray3 : UIColor.label
+    }
+    
+    @objc func deleteItem() {
+        let alert = UIAlertController(title: NSLocalizedString("delete", comment: ""),
+                                      message: NSLocalizedString("can't recover", comment: ""),
+                                      preferredStyle: .alert)
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        let ok = UIAlertAction(title: NSLocalizedString("delete", comment: ""), style: .destructive) { (_) in
+            switch self.currentItemType {
+            case .Book:
+                let book = self.realm.objects(BookRealm.self).filter("title = '\(self.currentBook.title)'").first!
+                try! self.realm.write {
+                    self.realm.delete(book)
+                }
+            case .Movie:
+                let movie = self.realm.objects(MovieRealm.self).filter("title = '\(self.currentMovie.title)'").first!
+                try! self.realm.write {
+                    self.realm.delete(movie)
+                }
+            }
+            
+            self.delegate?.needToRefresh()
+            self.navigationController?.popViewController(animated: false)
+        }
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        self.present(alert, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
