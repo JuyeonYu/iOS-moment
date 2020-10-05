@@ -23,6 +23,21 @@ struct Book {
     var progress: Float?
     var memo: String?
     
+    init() {
+        self.title = ""
+        self.link = ""
+        self.image = ""
+        self.author = ""
+        self.price = ""
+        self.discount = ""
+        self.publisher = ""
+        self.pubdate = ""
+        self.isbn = ""
+        self.desc = ""
+        self.progress = 0
+        self.memo = ""
+    }
+    
     init(bookRealm: BookRealm) {
         self.title = bookRealm.title
         self.link = bookRealm.link

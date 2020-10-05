@@ -11,7 +11,6 @@ import UIKit
 class HeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var headerLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .systemGray5

@@ -15,3 +15,16 @@ class Constant {
 enum NaverSearchType: CaseIterable {
     case Book, Movie
 }
+
+enum ShowDataType: Int {
+    case ProgressBook = 0
+    case CompleteBook = 1
+    case ProgressMovie = 2
+    case CompleteMovie = 3
+    
+    static let count: Int = {
+            var max: Int = 0
+            while let _ = ShowDataType(rawValue: max) { max += 1 }
+            return max
+        }()
+}

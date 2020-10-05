@@ -213,7 +213,6 @@ extension SearchItemViewController: SearchItemViewControllerDelegate {
             try! self.realm.write {
                 self.realm.add(bookRealm)
             }
-            
         case .Movie:
             let movieRealm = MovieRealm()
             guard let movie = selectedMovie else { return }
@@ -230,7 +229,7 @@ extension SearchItemViewController: SearchItemViewControllerDelegate {
         }
 
         self.dismiss(animated: false) {
-            self.delegate?.adddData()
+            self.delegate?.needToRefresh()
         }
     }
 }
