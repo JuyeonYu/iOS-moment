@@ -242,35 +242,6 @@ extension MainViewController: MainViewControllerDelegate {
         self.collectionView.reloadData()
     }
     
-//    fileprivate func initdata() {
-//        progressBooks.removeAll()
-//        progressMovies.removeAll()
-//        completeBooks.removeAll()
-//        completeMovies.removeAll()
-//
-//        let books = Array(realm.objects(BookRealm.self))
-//
-//        for bookRealm in books {
-//            let book = Book(bookRealm: bookRealm)
-//            if book.progress == 100 {
-//                completeBooks.append(book)
-//            } else {
-//                progressBooks.append(book)
-//            }
-//        }
-//
-//        let movies = Array(realm.objects(MovieRealm.self))
-//
-//        for movieRealm in movies {
-//            let movie = Movie(movieRealm: movieRealm)
-//            if movie.progress == 100 {
-//                completeMovies.append(movie)
-//            } else {
-//                progressMovies.append(movie)
-//            }
-//        }
-//    }
-    
     func adddData() {
         initdata()
         self.collectionView.reloadData()
