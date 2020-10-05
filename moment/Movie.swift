@@ -25,6 +25,17 @@ struct Movie {
     var progress: Float?
     var memo: String?
     
+    init() {
+        self.title = ""
+        self.link = ""
+        self.image = ""
+        self.director = ""
+        self.pubdate = ""
+        self.subtitle = ""
+        self.progress = 0
+        self.memo = ""
+    }
+    
     init(movieRealm: MovieRealm) {
         self.title = movieRealm.title
         self.link = movieRealm.link
