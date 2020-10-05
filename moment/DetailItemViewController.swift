@@ -59,6 +59,7 @@ class DetailItemViewController: UIViewController {
             self.slider.value = currentMovie.progress!
         }
         self.processingLabel.text = Util.processingText(percent: self.slider.value)
+        memoTextView.textColor = memoTextView.text == "" || memoTextView.text == Constant.detailTextFieldPlaceHolder ? UIColor.systemGray3 : UIColor.label
     }
     
     @objc func deleteItem() {
