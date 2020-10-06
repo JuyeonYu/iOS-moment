@@ -29,7 +29,11 @@ class DetailItemViewController: UIViewController {
         self.processingLabel.text = Util.processingText(percent: slider.value)
     }
     
-    var currentBook: BookRealm? = nil
+    var currentItemType: NaverSearchType = NaverSearchType.Book
+    var currentBook: Book = Book()
+    var currentMovie: Movie = Movie()
+    
+    weak var delegate: MainViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,26 +44,69 @@ class DetailItemViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.titleLabel.text = self.currentBook?.title
-        self.bookImageView.kf.setImage(with: URL(string: self.currentBook?.image ?? ""))
-        
-        self.memoTextView.text = Constant.detailTextFieldPlaceHolder
-        memoTextView.textColor = UIColor.lightGray
-                
-        let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook!.title)'").first
-        self.memoTextView.text = book?.memo == "" ? Constant.detailTextFieldPlaceHolder : book?.memo
-        self.slider.value = book!.progress
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(deleteItem))
+
+        switch currentItemType {
+        case .Book:
+            titleLabel.text = currentBook.title
+            bookImageView.kf.setImage(with: URL(string: currentBook.image))
+            memoTextView.text = currentBook.memo == "" ? Constant.detailTextFieldPlaceHolder : currentBook.memo
+            self.slider.value = currentBook.progress!
+        case .Movie:
+            titleLabel.text = self.currentMovie.title
+            bookImageView.kf.setImage(with: URL(string: currentMovie.image))
+            memoTextView.text = currentMovie.memo == "" ? Constant.detailTextFieldPlaceHolder : currentMovie.memo
+            self.slider.value = currentMovie.progress!
+        }
         self.processingLabel.text = Util.processingText(percent: self.slider.value)
+        memoTextView.textColor = memoTextView.text == "" || memoTextView.text == Constant.detailTextFieldPlaceHolder ? UIColor.systemGray3 : UIColor.label
+    }
+    
+    @objc func deleteItem() {
+        let alert = UIAlertController(title: NSLocalizedString("delete", comment: ""),
+                                      message: NSLocalizedString("can't recover", comment: ""),
+                                      preferredStyle: .alert)
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        let ok = UIAlertAction(title: NSLocalizedString("delete", comment: ""), style: .destructive) { (_) in
+            switch self.currentItemType {
+            case .Book:
+                let book = self.realm.objects(BookRealm.self).filter("title = '\(self.currentBook.title)'").first!
+                try! self.realm.write {
+                    self.realm.delete(book)
+                }
+            case .Movie:
+                let movie = self.realm.objects(MovieRealm.self).filter("title = '\(self.currentMovie.title)'").first!
+                try! self.realm.write {
+                    self.realm.delete(movie)
+                }
+            }
+            
+            self.delegate?.needToRefresh()
+            self.navigationController?.popViewController(animated: false)
+        }
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        self.present(alert, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook!.title)'").first
-        try! self.realm.write {
-            book?.memo = self.memoTextView.text
-            book?.progress = self.slider.value
+        switch currentItemType {
+        case .Book:
+            let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook.title)'").first
+            try! self.realm.write {
+                book?.memo = self.memoTextView.text
+                book?.progress = self.slider.value
+            }
+        case .Movie:
+            let movie = self.realm.objects(MovieRealm.self).filter("title = '\(currentMovie.title)'").first
+            try! self.realm.write {
+                movie?.memo = self.memoTextView.text
+                movie?.progress = self.slider.value
+            }
         }
+        self.delegate?.needToRefresh()
     }
     
     func textViewSetupView() {
