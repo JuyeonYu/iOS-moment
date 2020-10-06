@@ -35,8 +35,6 @@ class SearchItemViewController: UIViewController {
             }
         }
     
-    var totalItemNumber: Int = 0
-    var showedItemNumber: Int = 0
     var selectedBook: Book? = nil
     var selectedMovie: Movie? = nil
     
@@ -51,8 +49,8 @@ class SearchItemViewController: UIViewController {
                 
         tableView.register(UINib(nibName: "SearchItemTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchItemTableViewCell")
         
-        searchBar.scopeButtonTitles?[0] = "책/만화"
-        searchBar.scopeButtonTitles?[1] = "영화/드라마"
+        searchBar.scopeButtonTitles?[0] = NSLocalizedString("book/comic", comment: "")
+        searchBar.scopeButtonTitles?[1] = NSLocalizedString("movie/drama", comment: "")
     }
 }
 
@@ -93,19 +91,16 @@ extension SearchItemViewController: UISearchBarDelegate {
                 return
             }
             
-            self.totalItemNumber = naverBooks.total
             var tempBooks: [Book] = []
             for naverBook in naverBooks.items {
-                if let encoded  = naverBook.image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
-                   let myURL = URL(string: encoded) {
-                    print(myURL)
-                }
-                
                 let book: Book = Book(naverBook: naverBook)
                 tempBooks.append(book)
+                
+                if self.books.count + tempBooks.count == naverBooks.total {
+                    break
+                }
             }
-            self.showedItemNumber = self.books.count
-            self.books = tempBooks
+            self.books = self.books + tempBooks
         }
     }
     
@@ -115,19 +110,16 @@ extension SearchItemViewController: UISearchBarDelegate {
                 return
             }
             
-            self.totalItemNumber = naverMovies.total
             var tempMovies: [Movie] = []
             for naverMovie in naverMovies.items {
-                if let encoded  = naverMovie.image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
-                   let myURL = URL(string: encoded) {
-                    print(myURL)
-                }
-                
                 let movie: Movie = Movie(naverMovie: naverMovie)
                 tempMovies.append(movie)
+                
+                if self.movies.count + tempMovies.count == naverMovies.total {
+                    break
+                }
             }
-            self.showedItemNumber = self.books.count
-            self.movies = tempMovies
+            self.movies = self.movies + tempMovies
         }
     }
 }
@@ -169,9 +161,8 @@ extension SearchItemViewController: UITableViewDataSource {
                 cell.bookImageView.image = UIImage(named: "test3")
             }
             
-            if indexPath.row == self.books.count - 1
-                && self.showedItemNumber < self.totalItemNumber {
-                requestNaverBookSearchAPI(self.searchBar.text!, start: (indexPath.row / 19) + 1)
+            if indexPath.row == self.books.count - 1 {
+                requestNaverBookSearchAPI(self.searchBar.text!, start: (indexPath.row) + 2)
             }
         } else {
             cell.titleLabel.text = self.movies[indexPath.row].title
@@ -183,9 +174,8 @@ extension SearchItemViewController: UITableViewDataSource {
                 cell.bookImageView.image = UIImage(named: "test3")
             }
             
-            if indexPath.row == self.books.count - 1
-                && self.showedItemNumber < self.totalItemNumber {
-                requestNaverMovieSearchAPI(self.searchBar.text!, start: (indexPath.row / 19) + 1)
+            if indexPath.row == self.books.count - 1 {
+                requestNaverMovieSearchAPI(self.searchBar.text!, start: (indexPath.row) + 2)
             }
         }
         return cell

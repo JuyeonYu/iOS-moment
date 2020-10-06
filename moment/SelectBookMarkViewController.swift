@@ -36,6 +36,9 @@ class SelectBookMarkViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guideLabel.text = NSLocalizedString("proceeding", comment: "")
+        processingLabel.text = NSLocalizedString("begin", comment: "")
+        saveButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal) 
         saveButton.layer.cornerRadius = 0.5 * saveButton.bounds.size.height
     }
 }

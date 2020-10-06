@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "얼마나 보셨나요?"; ObjectID = "UeI-nR-Mqz"; */
+"UeI-nR-Mqz.text" = "얼마나 보셨나요?";
+
+/* Class = "UILabel"; text = "title"; ObjectID = "bdE-vG-6uw"; */
+"bdE-vG-6uw.text" = "title";
+
+/* Class = "UISearchBar"; e33-tP-fu4.scopeButtonTitles[0] = "Title"; ObjectID = "e33-tP-fu4"; */
+"e33-tP-fu4.scopeButtonTitles[0]" = "Title";
+
+/* Class = "UISearchBar"; e33-tP-fu4.scopeButtonTitles[1] = "Title"; ObjectID = "e33-tP-fu4"; */
+"e33-tP-fu4.scopeButtonTitles[1]" = "Title";
+
+/* Class = "UIButton"; normalTitle = "등록"; ObjectID = "g0c-5e-u4v"; */
+"g0c-5e-u4v.normalTitle" = "등록";
+
+/* Class = "UILabel"; text = "title"; ObjectID = "hFj-0K-EeU"; */
+"hFj-0K-EeU.text" = "title";
+
+/* Class = "UILabel"; text = "이제 보기 시작했어요"; ObjectID = "u7W-Uv-pmJ"; */
+"u7W-Uv-pmJ.text" = "이제 보기 시작했어요";

@@ -66,7 +66,7 @@ class DetailItemViewController: UIViewController {
         let alert = UIAlertController(title: NSLocalizedString("delete", comment: ""),
                                       message: NSLocalizedString("can't recover", comment: ""),
                                       preferredStyle: .alert)
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        let cancel = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel)
         let ok = UIAlertAction(title: NSLocalizedString("delete", comment: ""), style: .destructive) { (_) in
             switch self.currentItemType {
             case .Book:
