@@ -171,28 +171,28 @@ extension MainViewController: UICollectionViewDataSource {
                 if let url = URL(string: progressBooks[indexPath.row].image) {
                     cell.itemImageView.kf.setImage(with: url)
                 } else {
-                    cell.itemImageView.image = UIImage(named: "test3")
+                    cell.itemImageView.image = UIImage(systemName: "questionmark.square.fill")
                 }
                 return cell
             case ShowDataType.ProgressMovie.rawValue:
                 if let url = URL(string: progressMovies[indexPath.row].image) {
                     cell.itemImageView.kf.setImage(with: url)
                 } else {
-                    cell.itemImageView.image = UIImage(named: "test3")
+                    cell.itemImageView.image = UIImage(named: "questionmark.square.fill")
                 }
                 return cell
             case ShowDataType.CompleteBook.rawValue:
                 if let url = URL(string: completeBooks[indexPath.row].image) {
                     cell.itemImageView.kf.setImage(with: url)
                 } else {
-                    cell.itemImageView.image = UIImage(named: "test3")
+                    cell.itemImageView.image = UIImage(named: "questionmark.square.fill")
                 }
                 return cell
             case ShowDataType.CompleteMovie.rawValue:
                 if let url = URL(string: completeMovies[indexPath.row].image) {
                     cell.itemImageView.kf.setImage(with: url)
                 } else {
-                    cell.itemImageView.image = UIImage(named: "test3")
+                    cell.itemImageView.image = UIImage(named: "questionmark.square.fill")
                 }
                 return cell
             default:

@@ -158,7 +158,7 @@ extension SearchItemViewController: UITableViewDataSource {
             if let imageURL = URL(string: self.books[indexPath.row].image) {
                 cell.bookImageView.kf.setImage(with:imageURL)
             } else {
-                cell.bookImageView.image = UIImage(named: "test3")
+                cell.bookImageView.image = UIImage(named: "questionmark.square.fill")
             }
             
             if indexPath.row == self.books.count - 1 {
@@ -171,7 +171,7 @@ extension SearchItemViewController: UITableViewDataSource {
             if let imageURL = URL(string: self.movies[indexPath.row].image) {
                 cell.bookImageView.kf.setImage(with:imageURL)
             } else {
-                cell.bookImageView.image = UIImage(named: "test3")
+                cell.bookImageView.image = UIImage(named: "questionmark.square.fill")
             }
             
             if indexPath.row == self.books.count - 1 {

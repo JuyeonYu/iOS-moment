@@ -29,6 +29,7 @@
 		CE0C9A32252346670094AE60 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C9A31252346670094AE60 /* Constant.swift */; };
 		CE5050E1252A19340086BBD9 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5050DF252A19340086BBD9 /* HeaderCollectionReusableView.swift */; };
 		CE5050E2252A19340086BBD9 /* HeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5050E0252A19340086BBD9 /* HeaderCollectionReusableView.xib */; };
+		CEF45260252CCA7000E5CA0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF45262252CCA7000E5CA0A /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,8 @@
 		CE0C9A31252346670094AE60 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CE5050DF252A19340086BBD9 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		CE5050E0252A19340086BBD9 /* HeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		CEF45261252CCA7000E5CA0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEF45264252CCA7A00E5CA0A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E8B18DDB38C9FDA8CDA0B00D /* Pods-moment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moment.debug.xcconfig"; path = "Target Support Files/Pods-moment/Pods-moment.debug.xcconfig"; sourceTree = "<group>"; };
 		F22BAD0F9FD3E8F2C8C8EBB8 /* Pods-moment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moment.release.xcconfig"; path = "Target Support Files/Pods-moment/Pods-moment.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,9 +98,9 @@
 		B5AA7ADD252BF42500EC6A37 /* config */ = {
 			isa = PBXGroup;
 			children = (
-				B5F4D129251C5E1B005D3502 /* Info.plist */,
 				B5AA7AE4252BF46400EC6A37 /* Localizable.strings */,
 				B5F4D124251C5E1B005D3502 /* Assets.xcassets */,
+				CEF45262252CCA7000E5CA0A /* InfoPlist.strings */,
 			);
 			path = config;
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 				CE0C995F25206E4D0094AE60 /* NetworkManager.swift */,
 				CE0C99BE252223770094AE60 /* SelectBookMarkViewController.swift */,
 				CE0C995725206CA00094AE60 /* Book.swift */,
+				B5F4D129251C5E1B005D3502 /* Info.plist */,
 				B5AA7ADD252BF42500EC6A37 /* config */,
 				B5FC7DD6252846FC00B1E096 /* Movie.swift */,
 				CE5050DF252A19340086BBD9 /* HeaderCollectionReusableView.swift */,
@@ -217,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5F4D128251C5E1B005D3502 /* LaunchScreen.storyboard in Resources */,
+				CEF45260252CCA7000E5CA0A /* InfoPlist.strings in Resources */,
 				B5F4D136251C6ADA005D3502 /* ItemCollectionViewCell.xib in Resources */,
 				CE5050E2252A19340086BBD9 /* HeaderCollectionReusableView.xib in Resources */,
 				B5AA7AE2252BF46400EC6A37 /* Localizable.strings in Resources */,
@@ -320,6 +325,15 @@
 				B5AA7AE7252BF47D00EC6A37 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CEF45262252CCA7000E5CA0A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEF45261252CCA7000E5CA0A /* en */,
+				CEF45264252CCA7A00E5CA0A /* ko */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -449,7 +463,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = DUV8UP2WXU;
-				INFOPLIST_FILE = /Users/juyeonyu/Projects/johnny/moment/moment/config/Info.plist;
+				INFOPLIST_FILE = "/Users/juyeon/Project/iOS-moment/moment/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -470,7 +484,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = DUV8UP2WXU;
-				INFOPLIST_FILE = /Users/juyeonyu/Projects/johnny/moment/moment/config/Info.plist;
+				INFOPLIST_FILE = "/Users/juyeon/Project/iOS-moment/moment/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
