@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  moment
+
+  Created by 주연  유 on 2020/10/06.
+  Copyright © 2020 주연  유. All rights reserved.
+*/
+
+"isLeading" = "I'm leading";
+"isWatching" = "I'm watching";
+"hasLead" = "I've read";
+"hasWatched" = "I've watched";
+"book/comics" = "book/comics";
+"movie/drama" = "movie/drama";
+"delete" = "delete";
+"can't recover" = "after deleting, you can't recover";
+"cancel" = "cancel";
+"begin" = "I've been reading now";
+"proceeding1" = "I've been reading little bit";
+"proceeding2" = "I've been reading about half";
+"proceeding3" = "I've been reading almost";
+"end" = "I've read all!";
+"save" = "save";
+"proceeding" = "proceeding";

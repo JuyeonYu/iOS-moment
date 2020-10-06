@@ -210,16 +210,17 @@ extension MainViewController: UICollectionViewDataSource {
         
         switch showDataType {
         case ShowDataType.ProgressBook.rawValue:
-                headerCell.headerLabel.text = "읽고 있어요"
+            
+                headerCell.headerLabel.text = NSLocalizedString("isLeading", comment: "")
                 break
             case ShowDataType.ProgressMovie.rawValue:
-                headerCell.headerLabel.text = "보고 있어요"
+                headerCell.headerLabel.text = NSLocalizedString("isWatching", comment: "")
                 break
             case ShowDataType.CompleteBook.rawValue:
-                headerCell.headerLabel.text = "다 읽었어요"
+                headerCell.headerLabel.text = NSLocalizedString("hasLead", comment: "")
                 break
             case ShowDataType.CompleteMovie.rawValue:
-                headerCell.headerLabel.text = "다 봤어요"
+                headerCell.headerLabel.text = NSLocalizedString("hasWatched", comment: "")
                 break
         default:
             break

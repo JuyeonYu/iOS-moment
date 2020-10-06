@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5AA7AE2252BF46400EC6A37 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5AA7AE4252BF46400EC6A37 /* Localizable.strings */; };
 		B5F4D11C251C5E18005D3502 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4D11B251C5E18005D3502 /* AppDelegate.swift */; };
 		B5F4D11E251C5E18005D3502 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4D11D251C5E18005D3502 /* SceneDelegate.swift */; };
 		B5F4D120251C5E18005D3502 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4D11F251C5E18005D3502 /* MainViewController.swift */; };
@@ -32,6 +33,10 @@
 
 /* Begin PBXFileReference section */
 		53ECC718B70DD888A8446C3E /* Pods_moment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_moment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5AA7AE3252BF46400EC6A37 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5AA7AE6252BF47D00EC6A37 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		B5AA7AE7252BF47D00EC6A37 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B5AA7AE8252BF47D00EC6A37 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5F4D118251C5E18005D3502 /* moment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F4D11B251C5E18005D3502 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F4D11D251C5E18005D3502 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +92,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B5AA7ADD252BF42500EC6A37 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				B5F4D129251C5E1B005D3502 /* Info.plist */,
+				B5AA7AE4252BF46400EC6A37 /* Localizable.strings */,
+				B5F4D124251C5E1B005D3502 /* Assets.xcassets */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
 		B5F4D10F251C5E18005D3502 = {
 			isa = PBXGroup;
 			children = (
@@ -120,14 +135,13 @@
 				CE0C995F25206E4D0094AE60 /* NetworkManager.swift */,
 				CE0C99BE252223770094AE60 /* SelectBookMarkViewController.swift */,
 				CE0C995725206CA00094AE60 /* Book.swift */,
+				B5AA7ADD252BF42500EC6A37 /* config */,
 				B5FC7DD6252846FC00B1E096 /* Movie.swift */,
 				CE5050DF252A19340086BBD9 /* HeaderCollectionReusableView.swift */,
 				CE5050E0252A19340086BBD9 /* HeaderCollectionReusableView.xib */,
-				B5F4D124251C5E1B005D3502 /* Assets.xcassets */,
 				B5F4D126251C5E1B005D3502 /* LaunchScreen.storyboard */,
 				CE0C996525207C610094AE60 /* Util.swift */,
 				CE0C9A31252346670094AE60 /* Constant.swift */,
-				B5F4D129251C5E1B005D3502 /* Info.plist */,
 			);
 			path = moment;
 			sourceTree = "<group>";
@@ -185,6 +199,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = B5F4D10F251C5E18005D3502;
 			productRefGroup = B5F4D119251C5E18005D3502 /* Products */;
@@ -204,6 +219,7 @@
 				B5F4D128251C5E1B005D3502 /* LaunchScreen.storyboard in Resources */,
 				B5F4D136251C6ADA005D3502 /* ItemCollectionViewCell.xib in Resources */,
 				CE5050E2252A19340086BBD9 /* HeaderCollectionReusableView.xib in Resources */,
+				B5AA7AE2252BF46400EC6A37 /* Localizable.strings in Resources */,
 				B5F4D125251C5E1B005D3502 /* Assets.xcassets in Resources */,
 				B5F4D123251C5E18005D3502 /* Main.storyboard in Resources */,
 				B5F4D13C251C84DD005D3502 /* SearchItemTableViewCell.xib in Resources */,
@@ -279,10 +295,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B5AA7AE4252BF46400EC6A37 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5AA7AE3252BF46400EC6A37 /* en */,
+				B5AA7AE8252BF47D00EC6A37 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B5F4D121251C5E18005D3502 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B5F4D122251C5E18005D3502 /* Base */,
+				B5AA7AE6252BF47D00EC6A37 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -291,6 +317,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B5F4D127251C5E1B005D3502 /* Base */,
+				B5AA7AE7252BF47D00EC6A37 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -302,6 +329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -362,6 +390,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -420,7 +449,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = DUV8UP2WXU;
-				INFOPLIST_FILE = moment/Info.plist;
+				INFOPLIST_FILE = /Users/juyeonyu/Projects/johnny/moment/moment/config/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -441,7 +470,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = DUV8UP2WXU;
-				INFOPLIST_FILE = moment/Info.plist;
+				INFOPLIST_FILE = /Users/juyeonyu/Projects/johnny/moment/moment/config/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

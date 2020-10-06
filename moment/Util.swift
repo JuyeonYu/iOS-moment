@@ -12,15 +12,15 @@ import Kingfisher
 class Util {
     class func processingText (percent: Float) -> String{
         if percent == 0 {
-            return "이제 보기 시작했어요"
+            return NSLocalizedString("begin", comment: "")
         } else if percent == 25 {
-            return "조금 봤어요"
+            return NSLocalizedString("proceeding1", comment: "")
         } else if percent == 50 {
-            return "중간쯤 봤어요"
+            return NSLocalizedString("proceeding2", comment: "")
         } else if percent == 75 {
-            return "거의 다 봤어요"
+            return NSLocalizedString("proceeding3", comment: "")
         } else {
-            return "다 봤어요!"
+            return NSLocalizedString("end", comment: "")
         }
     }
 }
