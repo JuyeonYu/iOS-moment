@@ -1,0 +1,36 @@
+PODS:
+  - Alamofire (5.0.5)
+  - IQKeyboardManagerSwift (6.5.6)
+  - Kingfisher (5.15.4):
+    - Kingfisher/Core (= 5.15.4)
+  - Kingfisher/Core (5.15.4)
+  - Realm (5.4.4):
+    - Realm/Headers (= 5.4.4)
+  - Realm/Headers (5.4.4)
+  - RealmSwift (5.4.4):
+    - Realm (= 5.4.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0.0-rc.3)
+  - IQKeyboardManagerSwift
+  - Kingfisher (~> 5.15)
+  - RealmSwift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - Realm
+    - RealmSwift
+
+SPEC CHECKSUMS:
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  Kingfisher: 657dc1077e5bbbfff864194c79f29e35b722d062
+  Realm: b845bf406e03b9c52a53e0de2394480288aa532a
+  RealmSwift: b524ff07e4e92a34f4aecbe6ed1a613979a08bb9
+
+PODFILE CHECKSUM: ddf608cc247fb60c586afca0100341ced022a881
+
+COCOAPODS: 1.9.3

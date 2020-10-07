@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  moment
+
+  Created by 주연  유 on 2020/10/06.
+  Copyright © 2020 주연  유. All rights reserved.
+*/
+
+"isLeading" = "읽고 있어요";
+"isWatching" = "보고 있어요";
+"hasLead" = "다 읽었어요";
+"hasWatched" = "다 봤어요";
+"book/comics" = "책/만화";
+"movie/drama" = "영화/드라마";
+"delete" = "삭제";
+"can't recover" = "삭제 후에 복구 할 수 없습니다.";
+"cancel" = "취소";
+"begin" = "이제 보기 시작했어요";
+"proceeding1" = "조금 봤어요";
+"proceeding2" = "중간쯤 봤어요";
+"proceeding3" = "거의 다 봤어요";
+"end" = "다 봤어요!";
+"save" = "저장";
+"proceeding" = "얼마나 많이 보셨나요?";
