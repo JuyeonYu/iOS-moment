@@ -49,7 +49,7 @@ class SearchItemViewController: UIViewController {
                 
         tableView.register(UINib(nibName: "SearchItemTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchItemTableViewCell")
         
-        searchBar.scopeButtonTitles?[0] = NSLocalizedString("book/comic", comment: "")
+        searchBar.scopeButtonTitles?[0] = NSLocalizedString("book/comics", comment: "")
         searchBar.scopeButtonTitles?[1] = NSLocalizedString("movie/drama", comment: "")
     }
 }
