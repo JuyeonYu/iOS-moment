@@ -47,7 +47,8 @@ class DetailItemViewController: UIViewController {
         memoTextView.layer.cornerRadius = 0.05 * memoTextView.bounds.size.width
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(deleteItem))
-
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.systemRed
+        
         switch currentItemType {
         case .Book:
             titleLabel.text = currentBook.title
