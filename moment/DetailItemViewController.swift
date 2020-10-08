@@ -44,6 +44,8 @@ class DetailItemViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        memoTextView.layer.cornerRadius = 0.05 * memoTextView.bounds.size.width
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(deleteItem))
 
         switch currentItemType {
@@ -122,12 +124,12 @@ class DetailItemViewController: UIViewController {
 
 extension DetailItemViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        self.textViewSetupView()
+        Util.setMemoTextView(textView: memoTextView)
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == "" {
-            self.textViewSetupView()
+            Util.setMemoTextView(textView: memoTextView)
         }
     }
 }

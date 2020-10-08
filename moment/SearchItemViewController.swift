@@ -11,7 +11,7 @@ import Kingfisher
 import RealmSwift
 
 protocol SearchItemViewControllerDelegate: class {
-    func saveData(value: Float, type: NaverSearchType)
+    func saveData(progress: Float, memo: String?, type: NaverSearchType)
 }
 
 class SearchItemViewController: UIViewController {
@@ -183,6 +183,48 @@ extension SearchItemViewController: UITableViewDataSource {
 }
 
 extension SearchItemViewController: SearchItemViewControllerDelegate {
+    func saveData(progress: Float, memo: String?, type: NaverSearchType) {
+        switch type {
+        case .Book:
+            let bookRealm = BookRealm()
+            guard let book = selectedBook else { return }
+            bookRealm.title = book.title
+            bookRealm.link = book.link
+            bookRealm.image = book.image
+            bookRealm.author = book.author
+            bookRealm.price = book.price
+            bookRealm.discount = book.discount
+            bookRealm.publisher = book.publisher
+            bookRealm.pubdate = book.pubdate
+            bookRealm.isbn = book.isbn
+            bookRealm.desc = book.desc
+            bookRealm.progress = progress
+            bookRealm.memo = memo ?? ""
+
+            try! self.realm.write {
+                self.realm.add(bookRealm)
+            }
+        case .Movie:
+            let movieRealm = MovieRealm()
+            guard let movie = selectedMovie else { return }
+            movieRealm.title = movie.title
+            movieRealm.link = movie.link
+            movieRealm.image = movie.image
+            movieRealm.subtitle = movie.subtitle
+            movieRealm.pubdate = movie.pubdate
+            movieRealm.progress = progress
+            movieRealm.memo = memo ?? ""
+
+            try! self.realm.write {
+                self.realm.add(movieRealm)
+            }
+        }
+
+        self.dismiss(animated: false) {
+            self.delegate?.needToRefresh()
+        }
+    }
+    
     func saveData(value: Float, type: NaverSearchType) {
         switch type {
         case .Book:

@@ -23,6 +23,16 @@ class Util {
             return NSLocalizedString("end", comment: "")
         }
     }
+    
+    class func setMemoTextView(textView: UITextView) {
+        if textView.text == Constant.detailTextFieldPlaceHolder {
+            textView.text = ""
+            textView.textColor = UIColor.label
+        } else if textView.text == "" {
+            textView.text = Constant.detailTextFieldPlaceHolder
+            textView.textColor = UIColor.lightGray
+        }
+    }
 }
 
 extension String {
