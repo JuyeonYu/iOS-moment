@@ -175,6 +175,7 @@ extension MainViewController: UICollectionViewDataSource {
                 }
                 let progressValue = progressBooks[indexPath.row].progress ?? 0
                 cell.progressView.progress = progressValue / 100
+                cell.progressView.isHidden = false
                 return cell
             case ShowDataType.ProgressMovie.rawValue:
                 if let url = URL(string: progressMovies[indexPath.row].image) {
@@ -184,6 +185,7 @@ extension MainViewController: UICollectionViewDataSource {
                 }
                 let progressValue = progressMovies[indexPath.row].progress ?? 0
                 cell.progressView.progress = progressValue / 100
+                cell.progressView.isHidden = false
                 return cell
             case ShowDataType.CompleteBook.rawValue:
                 if let url = URL(string: completeBooks[indexPath.row].image) {
