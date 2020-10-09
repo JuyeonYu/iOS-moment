@@ -42,7 +42,7 @@ class SelectBookMarkViewController: UIViewController {
         super.viewWillAppear(animated)
         guideLabel.text = NSLocalizedString("proceeding", comment: "")
         processingLabel.text = NSLocalizedString("begin", comment: "")
-        saveButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal) 
+        saveButton.setTitle(NSLocalizedString("save", comment: "save item"), for: .normal)
         saveButton.layer.cornerRadius = 0.5 * saveButton.bounds.size.height
         memoTextView.layer.cornerRadius = 0.05 * memoTextView.bounds.size.width
     }

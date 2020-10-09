@@ -22,3 +22,6 @@
 "end" = "I've read all!";
 "save" = "save";
 "proceeding" = "proceeding";
+"duplicate" = "duplicate";
+"can't save duplicate item" = "you can't save duplicate item";
+"ok" = "ok";

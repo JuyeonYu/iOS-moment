@@ -126,16 +126,36 @@ extension SearchItemViewController: UISearchBarDelegate {
 
 extension SearchItemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchBar.selectedScopeButtonIndex == 0 {
+            selectedBook = self.books[indexPath.row]
+            guard self.realm.objects(BookRealm.self).filter("isbn = '\(selectedBook!.isbn)'").first == nil else {
+                let alert = UIAlertController(title: NSLocalizedString("duplicate", comment: ""),
+                                              message: NSLocalizedString("can't save duplicate item", comment: ""),
+                                              preferredStyle: .alert)
+                let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+                                       style: .default)
+                alert.addAction(ok)
+                self.present(alert, animated: true)
+                return
+            }
+        } else {
+            selectedMovie = self.movies[indexPath.row]
+            guard self.realm.objects(MovieRealm.self).filter("link = '\(selectedMovie!.link)'").first == nil else {
+                let alert = UIAlertController(title: NSLocalizedString("duplicate", comment: ""),
+                                              message: NSLocalizedString("can't save duplicate item", comment: ""),
+                                              preferredStyle: .alert)
+                let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+                                       style: .default)
+                alert.addAction(ok)
+                self.present(alert, animated: true)
+                return
+            }
+        }
+        
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectBookMarkViewController") as! SelectBookMarkViewController
         vc.delegate = self
         vc.selectedType = searchBar.selectedScopeButtonIndex == 0 ? .Book : .Movie
         self.present(vc, animated: true, completion: nil)
-        
-        if searchBar.selectedScopeButtonIndex == 0 {
-            selectedBook = self.books[indexPath.row]
-        } else {
-            selectedMovie = self.movies[indexPath.row]
-        }
     }
 }
 
