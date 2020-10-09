@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,23 +19,41 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hpb-jX-1yS">
-                        <rect key="frame" x="10" y="15" width="80" height="120"/>
+                        <rect key="frame" x="0.0" y="5" width="100" height="120"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="120" id="5Vd-TF-UT6"/>
-                            <constraint firstAttribute="width" constant="80" id="H9V-Ii-pUt"/>
+                            <constraint firstAttribute="width" constant="100" id="H9V-Ii-pUt"/>
                         </constraints>
                     </imageView>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3gK-3S-AWE">
+                        <rect key="frame" x="0.0" y="130" width="100" height="5"/>
+                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="EkE-rO-mRf"/>
+                        </constraints>
+                    </progressView>
                 </subviews>
             </view>
-            <constraints>
-                <constraint firstItem="hpb-jX-1yS" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="18e-Ni-cqU"/>
-                <constraint firstItem="hpb-jX-1yS" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="D9y-fc-iTB"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="3gK-3S-AWE" firstAttribute="top" secondItem="hpb-jX-1yS" secondAttribute="bottom" constant="5" id="00a-92-sPC"/>
+                <constraint firstAttribute="trailing" secondItem="3gK-3S-AWE" secondAttribute="trailing" id="3qU-BO-gJm"/>
+                <constraint firstItem="3gK-3S-AWE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4Wx-1u-Pja"/>
+                <constraint firstItem="hpb-jX-1yS" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="D9y-fc-iTB"/>
+                <constraint firstItem="hpb-jX-1yS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="R1H-o7-sm5"/>
+                <constraint firstItem="3gK-3S-AWE" firstAttribute="width" secondItem="hpb-jX-1yS" secondAttribute="width" id="bda-Gm-PFe"/>
+                <constraint firstAttribute="bottom" secondItem="3gK-3S-AWE" secondAttribute="bottom" constant="15" id="lRi-au-8EU"/>
+            </constraints>
             <connections>
                 <outlet property="itemImageView" destination="hpb-jX-1yS" id="RiQ-Ma-Q3b"/>
+                <outlet property="progressView" destination="3gK-3S-AWE" id="PnG-mp-2v7"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="153.34821428571428"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

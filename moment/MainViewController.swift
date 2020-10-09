@@ -173,6 +173,8 @@ extension MainViewController: UICollectionViewDataSource {
                 } else {
                     cell.itemImageView.image = UIImage(systemName: "questionmark.square.fill")
                 }
+                let progressValue = progressBooks[indexPath.row].progress ?? 0
+                cell.progressView.progress = progressValue / 100
                 return cell
             case ShowDataType.ProgressMovie.rawValue:
                 if let url = URL(string: progressMovies[indexPath.row].image) {
@@ -180,6 +182,8 @@ extension MainViewController: UICollectionViewDataSource {
                 } else {
                     cell.itemImageView.image = UIImage(named: "questionmark.square.fill")
                 }
+                let progressValue = progressMovies[indexPath.row].progress ?? 0
+                cell.progressView.progress = progressValue / 100
                 return cell
             case ShowDataType.CompleteBook.rawValue:
                 if let url = URL(string: completeBooks[indexPath.row].image) {
@@ -187,6 +191,7 @@ extension MainViewController: UICollectionViewDataSource {
                 } else {
                     cell.itemImageView.image = UIImage(named: "questionmark.square.fill")
                 }
+                cell.progressView.isHidden = true
                 return cell
             case ShowDataType.CompleteMovie.rawValue:
                 if let url = URL(string: completeMovies[indexPath.row].image) {
@@ -194,6 +199,7 @@ extension MainViewController: UICollectionViewDataSource {
                 } else {
                     cell.itemImageView.image = UIImage(named: "questionmark.square.fill")
                 }
+                cell.progressView.isHidden = true
                 return cell
             default:
                 return cell
