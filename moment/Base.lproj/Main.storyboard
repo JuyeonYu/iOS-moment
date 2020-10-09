@@ -163,7 +163,7 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0c-5e-u4v">
-                                <rect key="frame" x="145" y="741.5" width="124" height="40"/>
+                                <rect key="frame" x="103.5" y="741.5" width="207" height="40"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="YqX-ls-mRV"/>
@@ -191,7 +191,7 @@
                             <constraint firstItem="Kow-Ih-AMO" firstAttribute="trailing" secondItem="Tcq-si-RVw" secondAttribute="trailing" constant="20" id="D6S-0o-46J"/>
                             <constraint firstItem="u7W-Uv-pmJ" firstAttribute="centerY" secondItem="ui0-wt-3Qd" secondAttribute="centerY" multiplier="0.5" id="Dnc-gB-oLj"/>
                             <constraint firstItem="g0c-5e-u4v" firstAttribute="centerY" secondItem="ui0-wt-3Qd" secondAttribute="centerY" multiplier="1.7" id="Gyc-Ce-3mk"/>
-                            <constraint firstItem="g0c-5e-u4v" firstAttribute="width" secondItem="ui0-wt-3Qd" secondAttribute="width" multiplier="0.3" id="JhA-P5-uHb"/>
+                            <constraint firstItem="g0c-5e-u4v" firstAttribute="width" secondItem="ui0-wt-3Qd" secondAttribute="width" multiplier="0.5" id="JhA-P5-uHb"/>
                             <constraint firstItem="hZd-VI-1Je" firstAttribute="leading" secondItem="Tcq-si-RVw" secondAttribute="leading" id="PAV-W7-78X"/>
                             <constraint firstItem="u7W-Uv-pmJ" firstAttribute="centerX" secondItem="ui0-wt-3Qd" secondAttribute="centerX" id="PNl-nh-KbH"/>
                             <constraint firstItem="g0c-5e-u4v" firstAttribute="centerX" secondItem="ui0-wt-3Qd" secondAttribute="centerX" id="dsz-Ty-FuT"/>
