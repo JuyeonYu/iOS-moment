@@ -73,12 +73,12 @@ class DetailItemViewController: UIViewController {
         let ok = UIAlertAction(title: NSLocalizedString("delete", comment: ""), style: .destructive) { (_) in
             switch self.currentItemType {
             case .Book:
-                let book = self.realm.objects(BookRealm.self).filter("title = '\(self.currentBook.title)'").first!
+                let book = self.realm.objects(BookRealm.self).filter("isbn = '\(self.currentBook.isbn)'").first!
                 try! self.realm.write {
                     self.realm.delete(book)
                 }
             case .Movie:
-                let movie = self.realm.objects(MovieRealm.self).filter("title = '\(self.currentMovie.title)'").first!
+                let movie = self.realm.objects(MovieRealm.self).filter("link = '\(self.currentMovie.link)'").first!
                 try! self.realm.write {
                     self.realm.delete(movie)
                 }
@@ -97,13 +97,13 @@ class DetailItemViewController: UIViewController {
         
         switch currentItemType {
         case .Book:
-            let book = self.realm.objects(BookRealm.self).filter("title = '\(currentBook.title)'").first
+            let book = self.realm.objects(BookRealm.self).filter("isbn = '\(currentBook.isbn)'").first
             try! self.realm.write {
                 book?.memo = self.memoTextView.text
                 book?.progress = self.slider.value
             }
         case .Movie:
-            let movie = self.realm.objects(MovieRealm.self).filter("title = '\(currentMovie.title)'").first
+            let movie = self.realm.objects(MovieRealm.self).filter("link = '\(currentMovie.link)'").first
             try! self.realm.write {
                 movie?.memo = self.memoTextView.text
                 movie?.progress = self.slider.value

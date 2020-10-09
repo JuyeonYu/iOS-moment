@@ -218,7 +218,6 @@ extension MainViewController: UICollectionViewDataSource {
         
         switch showDataType {
         case ShowDataType.ProgressBook.rawValue:
-            
                 headerCell.headerLabel.text = NSLocalizedString("isLeading", comment: "")
                 break
             case ShowDataType.ProgressMovie.rawValue:
