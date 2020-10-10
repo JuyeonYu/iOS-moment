@@ -135,29 +135,12 @@
 			isa = PBXGroup;
 			children = (
 				B5F4D12F251C6A1E005D3502 /* application */,
-				B5F4D11F251C5E18005D3502 /* MainViewController.swift */,
-				B5F4D137251C84C8005D3502 /* SearchItemViewController.swift */,
-				B5F4D133251C6ADA005D3502 /* ItemCollectionViewCell.swift */,
-				B5F4D134251C6ADA005D3502 /* ItemCollectionViewCell.xib */,
-				B5F4D121251C5E18005D3502 /* Main.storyboard */,
-				B5F4D139251C84DD005D3502 /* SearchItemTableViewCell.swift */,
-				B5F4D13A251C84DD005D3502 /* SearchItemTableViewCell.xib */,
-				B5F4D155251C944B005D3502 /* DetailItemViewController.swift */,
-				CEF452B22530E7A800E5CA0A /* SearchHistoryTableViewCell.swift */,
-				CEF452B32530E7A800E5CA0A /* SearchHistoryTableViewCell.xib */,
-				CEF452942530D3B300E5CA0A /* SearchViewController.swift */,
-				CE0C995F25206E4D0094AE60 /* NetworkManager.swift */,
-				CE0C99BE252223770094AE60 /* SelectBookMarkViewController.swift */,
-				CE0C995725206CA00094AE60 /* Book.swift */,
-				CEF452A52530E4D600E5CA0A /* Keyword.swift */,
+				CEF452D7253226A100E5CA0A /* Model */,
+				CEF452D8253226C900E5CA0A /* feature */,
+				CEF452E1253227CC00E5CA0A /* etc */,
 				B5F4D129251C5E1B005D3502 /* Info.plist */,
 				B5AA7ADD252BF42500EC6A37 /* config */,
-				B5FC7DD6252846FC00B1E096 /* Movie.swift */,
-				CE5050DF252A19340086BBD9 /* HeaderCollectionReusableView.swift */,
-				CE5050E0252A19340086BBD9 /* HeaderCollectionReusableView.xib */,
 				B5F4D126251C5E1B005D3502 /* LaunchScreen.storyboard */,
-				CE0C996525207C610094AE60 /* Util.swift */,
-				CE0C9A31252346670094AE60 /* Constant.swift */,
 			);
 			path = moment;
 			sourceTree = "<group>";
@@ -165,10 +148,99 @@
 		B5F4D12F251C6A1E005D3502 /* application */ = {
 			isa = PBXGroup;
 			children = (
+				B5F4D121251C5E18005D3502 /* Main.storyboard */,
 				B5F4D11B251C5E18005D3502 /* AppDelegate.swift */,
 				B5F4D11D251C5E18005D3502 /* SceneDelegate.swift */,
 			);
 			path = application;
+			sourceTree = "<group>";
+		};
+		CEF452D7253226A100E5CA0A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE0C995725206CA00094AE60 /* Book.swift */,
+				CEF452A52530E4D600E5CA0A /* Keyword.swift */,
+				B5FC7DD6252846FC00B1E096 /* Movie.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CEF452D8253226C900E5CA0A /* feature */ = {
+			isa = PBXGroup;
+			children = (
+				CEF452DC2532273200E5CA0A /* search */,
+				CEF452D9253226D700E5CA0A /* show */,
+			);
+			path = feature;
+			sourceTree = "<group>";
+		};
+		CEF452D9253226D700E5CA0A /* show */ = {
+			isa = PBXGroup;
+			children = (
+				CEF452DB2532270500E5CA0A /* View */,
+				CEF452DA253226FB00E5CA0A /* ViewController */,
+			);
+			path = show;
+			sourceTree = "<group>";
+		};
+		CEF452DA253226FB00E5CA0A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B5F4D11F251C5E18005D3502 /* MainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CEF452DB2532270500E5CA0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5F4D133251C6ADA005D3502 /* ItemCollectionViewCell.swift */,
+				B5F4D134251C6ADA005D3502 /* ItemCollectionViewCell.xib */,
+				CE5050DF252A19340086BBD9 /* HeaderCollectionReusableView.swift */,
+				CE5050E0252A19340086BBD9 /* HeaderCollectionReusableView.xib */,
+				B5F4D155251C944B005D3502 /* DetailItemViewController.swift */,
+				CE0C99BE252223770094AE60 /* SelectBookMarkViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEF452DC2532273200E5CA0A /* search */ = {
+			isa = PBXGroup;
+			children = (
+				CEF452DE2532274800E5CA0A /* View */,
+				CEF452DD2532274200E5CA0A /* ViewController */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
+		CEF452DD2532274200E5CA0A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B5F4D137251C84C8005D3502 /* SearchItemViewController.swift */,
+				CEF452942530D3B300E5CA0A /* SearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CEF452DE2532274800E5CA0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5F4D139251C84DD005D3502 /* SearchItemTableViewCell.swift */,
+				B5F4D13A251C84DD005D3502 /* SearchItemTableViewCell.xib */,
+				CEF452B22530E7A800E5CA0A /* SearchHistoryTableViewCell.swift */,
+				CEF452B32530E7A800E5CA0A /* SearchHistoryTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEF452E1253227CC00E5CA0A /* etc */ = {
+			isa = PBXGroup;
+			children = (
+				CE0C995F25206E4D0094AE60 /* NetworkManager.swift */,
+				CE0C996525207C610094AE60 /* Util.swift */,
+				CE0C9A31252346670094AE60 /* Constant.swift */,
+			);
+			path = etc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
