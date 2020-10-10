@@ -12,6 +12,7 @@ import RealmSwift
 
 protocol SearchItemViewControllerDelegate: class {
     func saveData(progress: Float, memo: String?, type: NaverSearchType)
+    func searchKeyword(keyword: String)
 }
 
 class SearchItemViewController: UIViewController {
@@ -55,6 +56,14 @@ class SearchItemViewController: UIViewController {
 }
 
 extension SearchItemViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        vc.delegate = self
+        searchBar.text = nil
+        self.present(vc, animated: false, completion: nil)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             self.books.removeAll()
@@ -203,6 +212,13 @@ extension SearchItemViewController: UITableViewDataSource {
 }
 
 extension SearchItemViewController: SearchItemViewControllerDelegate {
+    func searchKeyword(keyword: String) {
+        books.removeAll()
+        movies.removeAll()
+        self.searchBar.text = keyword
+        searchBarSearchButtonClicked(searchBar)
+    }
+    
     func saveData(progress: Float, memo: String?, type: NaverSearchType) {
         switch type {
         case .Book:

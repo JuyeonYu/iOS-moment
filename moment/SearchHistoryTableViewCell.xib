@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchHistoryTableViewCell" id="KGk-i7-Jjw" customClass="SearchHistoryTableViewCell" customModule="moment" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hr-Ii-W8Z">
+                        <rect key="frame" x="10" y="0.0" width="300" height="44"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bE-pR-AcW">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="44"/>
+                                <state key="normal" image="magnifyingglass.circle.fill" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="search keyword" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nr6-Ja-byh">
+                                <rect key="frame" x="30" y="0.0" width="195" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSi-rz-OcX">
+                                <rect key="frame" x="225" y="0.0" width="45" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vbf-oM-gtE">
+                                <rect key="frame" x="270" y="0.0" width="30" height="44"/>
+                                <state key="normal" image="xmark" catalog="system"/>
+                                <connections>
+                                    <action selector="didTouchDeleteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mp1-V5-Obu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="dSi-rz-OcX" firstAttribute="width" secondItem="6hr-Ii-W8Z" secondAttribute="width" multiplier="0.15" id="IIX-jX-usT"/>
+                            <constraint firstItem="8bE-pR-AcW" firstAttribute="width" secondItem="6hr-Ii-W8Z" secondAttribute="width" multiplier="0.1" id="IaT-OX-1jE"/>
+                            <constraint firstItem="Vbf-oM-gtE" firstAttribute="width" secondItem="6hr-Ii-W8Z" secondAttribute="width" multiplier="0.1" id="Sxa-Ko-5Do"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6hr-Ii-W8Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1oq-WS-KbN"/>
+                    <constraint firstAttribute="bottom" secondItem="6hr-Ii-W8Z" secondAttribute="bottom" id="Bd0-GQ-MTL"/>
+                    <constraint firstItem="6hr-Ii-W8Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="DkJ-KH-5cA"/>
+                    <constraint firstAttribute="trailing" secondItem="6hr-Ii-W8Z" secondAttribute="trailing" constant="10" id="j2t-Qo-nJr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="searchDate" destination="dSi-rz-OcX" id="ca8-ac-rQH"/>
+                <outlet property="searchKeyword" destination="Nr6-Ja-byh" id="r1t-d9-jNd"/>
+            </connections>
+            <point key="canvasLocation" x="141" y="90"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+    </resources>
+</document>

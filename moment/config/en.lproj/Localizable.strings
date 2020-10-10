@@ -25,3 +25,5 @@
 "duplicate" = "duplicate";
 "can't save duplicate item" = "you can't save duplicate item";
 "ok" = "ok";
+"can't search empty" = "you can't search empty";
+"warnning" = "warnning";

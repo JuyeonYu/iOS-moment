@@ -30,6 +30,10 @@
 		CE5050E1252A19340086BBD9 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5050DF252A19340086BBD9 /* HeaderCollectionReusableView.swift */; };
 		CE5050E2252A19340086BBD9 /* HeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5050E0252A19340086BBD9 /* HeaderCollectionReusableView.xib */; };
 		CEF45260252CCA7000E5CA0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF45262252CCA7000E5CA0A /* InfoPlist.strings */; };
+		CEF452952530D3B300E5CA0A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF452942530D3B300E5CA0A /* SearchViewController.swift */; };
+		CEF452A62530E4D600E5CA0A /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF452A52530E4D600E5CA0A /* Keyword.swift */; };
+		CEF452B42530E7A800E5CA0A /* SearchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF452B22530E7A800E5CA0A /* SearchHistoryTableViewCell.swift */; };
+		CEF452B52530E7A800E5CA0A /* SearchHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF452B32530E7A800E5CA0A /* SearchHistoryTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +66,10 @@
 		CE5050E0252A19340086BBD9 /* HeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		CEF45261252CCA7000E5CA0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CEF45264252CCA7A00E5CA0A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEF452942530D3B300E5CA0A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CEF452A52530E4D600E5CA0A /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
+		CEF452B22530E7A800E5CA0A /* SearchHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		CEF452B32530E7A800E5CA0A /* SearchHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		E8B18DDB38C9FDA8CDA0B00D /* Pods-moment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moment.debug.xcconfig"; path = "Target Support Files/Pods-moment/Pods-moment.debug.xcconfig"; sourceTree = "<group>"; };
 		F22BAD0F9FD3E8F2C8C8EBB8 /* Pods-moment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moment.release.xcconfig"; path = "Target Support Files/Pods-moment/Pods-moment.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,9 +143,13 @@
 				B5F4D139251C84DD005D3502 /* SearchItemTableViewCell.swift */,
 				B5F4D13A251C84DD005D3502 /* SearchItemTableViewCell.xib */,
 				B5F4D155251C944B005D3502 /* DetailItemViewController.swift */,
+				CEF452B22530E7A800E5CA0A /* SearchHistoryTableViewCell.swift */,
+				CEF452B32530E7A800E5CA0A /* SearchHistoryTableViewCell.xib */,
+				CEF452942530D3B300E5CA0A /* SearchViewController.swift */,
 				CE0C995F25206E4D0094AE60 /* NetworkManager.swift */,
 				CE0C99BE252223770094AE60 /* SelectBookMarkViewController.swift */,
 				CE0C995725206CA00094AE60 /* Book.swift */,
+				CEF452A52530E4D600E5CA0A /* Keyword.swift */,
 				B5F4D129251C5E1B005D3502 /* Info.plist */,
 				B5AA7ADD252BF42500EC6A37 /* config */,
 				B5FC7DD6252846FC00B1E096 /* Movie.swift */,
@@ -220,6 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF452B52530E7A800E5CA0A /* SearchHistoryTableViewCell.xib in Resources */,
 				B5F4D128251C5E1B005D3502 /* LaunchScreen.storyboard in Resources */,
 				CEF45260252CCA7000E5CA0A /* InfoPlist.strings in Resources */,
 				B5F4D136251C6ADA005D3502 /* ItemCollectionViewCell.xib in Resources */,
@@ -280,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF452952530D3B300E5CA0A /* SearchViewController.swift in Sources */,
 				CE5050E1252A19340086BBD9 /* HeaderCollectionReusableView.swift in Sources */,
 				CE0C996625207C610094AE60 /* Util.swift in Sources */,
 				CE0C996025206E4D0094AE60 /* NetworkManager.swift in Sources */,
@@ -292,7 +306,9 @@
 				B5FC7DD7252846FC00B1E096 /* Movie.swift in Sources */,
 				B5F4D156251C944B005D3502 /* DetailItemViewController.swift in Sources */,
 				B5F4D13B251C84DD005D3502 /* SearchItemTableViewCell.swift in Sources */,
+				CEF452A62530E4D600E5CA0A /* Keyword.swift in Sources */,
 				B5F4D11E251C5E18005D3502 /* SceneDelegate.swift in Sources */,
+				CEF452B42530E7A800E5CA0A /* SearchHistoryTableViewCell.swift in Sources */,
 				CE0C9A32252346670094AE60 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,7 +487,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.moment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "moment dev";
+				PROVISIONING_PROFILE_SPECIFIER = "Johnny can do everything";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -493,7 +509,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.moment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "moment dev";
+				PROVISIONING_PROFILE_SPECIFIER = "Johnny can do everything";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
