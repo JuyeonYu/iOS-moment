@@ -114,7 +114,6 @@ extension UICollectionView {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        arrowImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textColor = UIColor.black
         titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
         messageLabel.textColor = UIColor.lightGray
