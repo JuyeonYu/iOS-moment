@@ -141,19 +141,31 @@ extension MainViewController: UICollectionViewDelegate {
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        let showDataType: ShowDataType.RawValue = section
-        switch showDataType {
-            case ShowDataType.ProgressBook.rawValue:
-                return progressBooks.count
-            case ShowDataType.ProgressMovie.rawValue:
-                return progressMovies.count
-            case ShowDataType.CompleteBook.rawValue:
-                return completeBooks.count
-            case ShowDataType.CompleteMovie.rawValue:
-                return completeMovies.count
-        default:
-            return 0
+        
+        
+        if progressBooks.count + progressMovies.count + completeBooks.count + completeMovies.count == 0 {
+            collectionView.setEmptyView(title: "자! 이제 시작이죠!",
+                                        message: "위에 +버튼을 눌러서 작품을 추가해보세요!")
+        } else {
+            let showDataType: ShowDataType.RawValue = section
+            switch showDataType {
+                case ShowDataType.ProgressBook.rawValue:
+                    collectionView.restore()
+                    return progressBooks.count
+                case ShowDataType.ProgressMovie.rawValue:
+                    collectionView.restore()
+                    return progressMovies.count
+                case ShowDataType.CompleteBook.rawValue:
+                    collectionView.restore()
+                    return completeBooks.count
+                case ShowDataType.CompleteMovie.rawValue:
+                    collectionView.restore()
+                    return completeMovies.count
+            default:
+                return 0
+            }
         }
+        return 0
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
