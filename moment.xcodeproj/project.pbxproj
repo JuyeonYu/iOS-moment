@@ -548,9 +548,9 @@
 			baseConfigurationReference = E8B18DDB38C9FDA8CDA0B00D /* Pods-moment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DUV8UP2WXU;
 				INFOPLIST_FILE = "/Users/juyeon/Project/iOS-moment/moment/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -560,7 +560,7 @@
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.moment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Johnny can do everything";
+				PROVISIONING_PROFILE_SPECIFIER = "moment distribution profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -571,9 +571,9 @@
 			baseConfigurationReference = F22BAD0F9FD3E8F2C8C8EBB8 /* Pods-moment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DUV8UP2WXU;
 				INFOPLIST_FILE = "/Users/juyeon/Project/iOS-moment/moment/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -583,7 +583,7 @@
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.moment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Johnny can do everything";
+				PROVISIONING_PROFILE_SPECIFIER = "moment distribution profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
