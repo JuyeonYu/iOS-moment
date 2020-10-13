@@ -12,6 +12,7 @@ class SelectBookMarkViewController: UIViewController {
     var selectedType: NaverSearchType = .Book
     @IBOutlet weak var processingLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var memoTextView: UITextView!
     @IBAction func didSliderMove(_ sender: Any) {
         self.guideLabel.isHidden = true
         let stepCount = 25
@@ -25,20 +26,36 @@ class SelectBookMarkViewController: UIViewController {
     
     @IBAction func didTapSaveButton(_ sender: Any) {
         self.dismiss(animated: false) {
-            self.delegate?.saveData(value: self.slider.value, type: self.selectedType)
+            self.delegate?.saveData(progress: self.slider.value,
+                                    memo: self.memoTextView.text,
+                                    type: self.selectedType)
         }
     }
     
     @IBOutlet weak var guideLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.memoTextView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guideLabel.text = NSLocalizedString("proceeding", comment: "")
         processingLabel.text = NSLocalizedString("begin", comment: "")
-        saveButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal) 
+        saveButton.setTitle(NSLocalizedString("save", comment: "save item"), for: .normal)
         saveButton.layer.cornerRadius = 0.5 * saveButton.bounds.size.height
+        memoTextView.layer.cornerRadius = 0.05 * memoTextView.bounds.size.width
+    }
+}
+
+extension SelectBookMarkViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        Util.setMemoTextView(textView: memoTextView)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            Util.setMemoTextView(textView: memoTextView)
+        }
     }
 }

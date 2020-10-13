@@ -10,9 +10,9 @@ import UIKit
 
 class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var progressView: UIProgressView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
 }

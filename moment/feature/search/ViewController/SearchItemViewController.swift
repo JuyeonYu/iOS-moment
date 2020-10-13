@@ -11,7 +11,8 @@ import Kingfisher
 import RealmSwift
 
 protocol SearchItemViewControllerDelegate: class {
-    func saveData(value: Float, type: NaverSearchType)
+    func saveData(progress: Float, memo: String?, type: NaverSearchType)
+    func searchKeyword(keyword: String)
 }
 
 class SearchItemViewController: UIViewController {
@@ -55,6 +56,14 @@ class SearchItemViewController: UIViewController {
 }
 
 extension SearchItemViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        vc.delegate = self
+        searchBar.text = nil
+        self.present(vc, animated: false, completion: nil)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             self.books.removeAll()
@@ -126,16 +135,36 @@ extension SearchItemViewController: UISearchBarDelegate {
 
 extension SearchItemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchBar.selectedScopeButtonIndex == 0 {
+            selectedBook = self.books[indexPath.row]
+            guard self.realm.objects(BookRealm.self).filter("isbn = '\(selectedBook!.isbn)'").first == nil else {
+                let alert = UIAlertController(title: NSLocalizedString("duplicate", comment: ""),
+                                              message: NSLocalizedString("can't save duplicate item", comment: ""),
+                                              preferredStyle: .alert)
+                let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+                                       style: .default)
+                alert.addAction(ok)
+                self.present(alert, animated: true)
+                return
+            }
+        } else {
+            selectedMovie = self.movies[indexPath.row]
+            guard self.realm.objects(MovieRealm.self).filter("link = '\(selectedMovie!.link)'").first == nil else {
+                let alert = UIAlertController(title: NSLocalizedString("duplicate", comment: ""),
+                                              message: NSLocalizedString("can't save duplicate item", comment: ""),
+                                              preferredStyle: .alert)
+                let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+                                       style: .default)
+                alert.addAction(ok)
+                self.present(alert, animated: true)
+                return
+            }
+        }
+        
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectBookMarkViewController") as! SelectBookMarkViewController
         vc.delegate = self
         vc.selectedType = searchBar.selectedScopeButtonIndex == 0 ? .Book : .Movie
         self.present(vc, animated: true, completion: nil)
-        
-        if searchBar.selectedScopeButtonIndex == 0 {
-            selectedBook = self.books[indexPath.row]
-        } else {
-            selectedMovie = self.movies[indexPath.row]
-        }
     }
 }
 
@@ -183,6 +212,55 @@ extension SearchItemViewController: UITableViewDataSource {
 }
 
 extension SearchItemViewController: SearchItemViewControllerDelegate {
+    func searchKeyword(keyword: String) {
+        books.removeAll()
+        movies.removeAll()
+        self.searchBar.text = keyword
+        searchBarSearchButtonClicked(searchBar)
+    }
+    
+    func saveData(progress: Float, memo: String?, type: NaverSearchType) {
+        switch type {
+        case .Book:
+            let bookRealm = BookRealm()
+            guard let book = selectedBook else { return }
+            bookRealm.title = book.title
+            bookRealm.link = book.link
+            bookRealm.image = book.image
+            bookRealm.author = book.author
+            bookRealm.price = book.price
+            bookRealm.discount = book.discount
+            bookRealm.publisher = book.publisher
+            bookRealm.pubdate = book.pubdate
+            bookRealm.isbn = book.isbn
+            bookRealm.desc = book.desc
+            bookRealm.progress = progress
+            bookRealm.memo = memo ?? ""
+
+            try! self.realm.write {
+                self.realm.add(bookRealm)
+            }
+        case .Movie:
+            let movieRealm = MovieRealm()
+            guard let movie = selectedMovie else { return }
+            movieRealm.title = movie.title
+            movieRealm.link = movie.link
+            movieRealm.image = movie.image
+            movieRealm.subtitle = movie.subtitle
+            movieRealm.pubdate = movie.pubdate
+            movieRealm.progress = progress
+            movieRealm.memo = memo ?? ""
+
+            try! self.realm.write {
+                self.realm.add(movieRealm)
+            }
+        }
+
+        self.dismiss(animated: false) {
+            self.delegate?.needToRefresh()
+        }
+    }
+    
     func saveData(value: Float, type: NaverSearchType) {
         switch type {
         case .Book:

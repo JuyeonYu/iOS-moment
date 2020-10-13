@@ -22,3 +22,8 @@
 "end" = "다 봤어요!";
 "save" = "저장";
 "proceeding" = "얼마나 많이 보셨나요?";
+"duplicate" = "중복";
+"can't save duplicate item" = "이미 저장되어 있는 작품이에요";
+"ok" = "확인";
+"can't search empty" = "검색할 키워드를 입력해보세요";
+"warnning" = "주의";

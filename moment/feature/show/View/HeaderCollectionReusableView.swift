@@ -13,6 +13,6 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .systemGray5
+        self.layer.cornerRadius = 0.1 * self.frame.size.height
     }
 }
