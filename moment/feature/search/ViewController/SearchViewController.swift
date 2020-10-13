@@ -109,6 +109,10 @@ extension SearchViewController: UITableViewDelegate {
             self.saveKeyword(keyword: keyword)
         }
     }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return NSLocalizedString("show 20 keywords", comment: "")
+    }
 }
 
 extension SearchViewController: UITableViewDataSource {
