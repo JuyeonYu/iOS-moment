@@ -28,3 +28,5 @@
 "can't search empty" = "검색할 키워드를 입력해보세요";
 "warnning" = "주의";
 "show 20 keywords" = "최근 검색한 20개의 키워드가 저장됩니다";
+"input manually" = "직접 입력";
+"no result in searching" = "검색 시 원하는 결과가 없으세요?";

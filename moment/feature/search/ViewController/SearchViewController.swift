@@ -102,6 +102,12 @@ extension SearchViewController: UITableViewDelegate {
         return 50
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let searchHeaderView = SearchHeaderView.init()
+        searchHeaderView.delegate = self
+        return searchHeaderView
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let keyword = keywords[indexPath.row].title
         self.dismiss(animated: false) {
@@ -140,5 +146,13 @@ extension SearchViewController: SearchHistoryTableViewCellDelegate {
             self.realm.delete(keyword)
             self.initdata()
         }
+    }
+}
+
+extension SearchViewController: SearchHeaderViewDelegate {
+    func didTapInpuManualButton() {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "InputDetailItemViewController") as! InputDetailItemViewController
+//        vc.delegate = self
+        self.present(vc, animated: true, completion: nil)
     }
 }

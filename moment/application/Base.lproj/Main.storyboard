@@ -67,6 +67,81 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
         </scene>
+        <!--Input Detail Item View Controller-->
+        <scene sceneID="PXQ-YQ-eYB">
+            <objects>
+                <viewController storyboardIdentifier="InputDetailItemViewController" id="Ejj-Qs-ZcI" customClass="InputDetailItemViewController" customModule="moment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YcQ-OP-L3F">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ehR-ef-D7h">
+                                <rect key="frame" x="10" y="54" width="394" height="798"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3AH-0L-o2K">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="kbe-Dc-Ux3"/>
+                                        </constraints>
+                                        <state key="normal" image="plus.circle.fill" catalog="system"/>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Rz-TR-HHI">
+                                        <rect key="frame" x="0.0" y="140" width="394" height="62.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="100" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="451-jz-iQF">
+                                        <rect key="frame" x="-2" y="222.5" width="398" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="DQy-xb-Fep"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="didSliderMove:" destination="Fgg-uP-c1a" eventType="valueChanged" id="zp7-1m-TQ5"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id5-Sg-jjH">
+                                        <rect key="frame" x="0.0" y="296.5" width="394" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UHh-5j-SEo">
+                                        <rect key="frame" x="0.0" y="334.5" width="394" height="403.5"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6h-VO-j6D">
+                                        <rect key="frame" x="0.0" y="758" width="394" height="40"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="2AB-Ri-Xfy"/>
+                                        </constraints>
+                                        <state key="normal" title="등록">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapSaveButton:" destination="cx0-dN-yP8" eventType="touchUpInside" id="6En-Ql-zUI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="58S-dF-UJ0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="58S-dF-UJ0" firstAttribute="trailing" secondItem="ehR-ef-D7h" secondAttribute="trailing" constant="10" id="81d-of-6ca"/>
+                            <constraint firstItem="ehR-ef-D7h" firstAttribute="leading" secondItem="58S-dF-UJ0" secondAttribute="leading" constant="10" id="Qmf-P9-R8P"/>
+                            <constraint firstItem="58S-dF-UJ0" firstAttribute="bottom" secondItem="ehR-ef-D7h" secondAttribute="bottom" constant="10" id="g4T-4x-UmG"/>
+                            <constraint firstItem="ehR-ef-D7h" firstAttribute="top" secondItem="58S-dF-UJ0" secondAttribute="top" constant="10" id="nEv-H1-q9L"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6hS-R9-ozR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1996" y="-700"/>
+        </scene>
         <!--Detail Item View Controller-->
         <scene sceneID="h9K-qu-XnR">
             <objects>
@@ -323,6 +398,7 @@
     </scenes>
     <resources>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
