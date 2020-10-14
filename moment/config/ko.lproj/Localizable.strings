@@ -27,3 +27,4 @@
 "ok" = "확인";
 "can't search empty" = "검색할 키워드를 입력해보세요";
 "warnning" = "주의";
+"show 20 keywords" = "최근 검색한 20개의 키워드가 저장됩니다";

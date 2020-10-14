@@ -109,6 +109,10 @@ extension SearchViewController: UITableViewDelegate {
             self.saveKeyword(keyword: keyword)
         }
     }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return NSLocalizedString("show 20 keywords", comment: "")
+    }
 }
 
 extension SearchViewController: UITableViewDataSource {
@@ -130,7 +134,8 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: SearchHistoryTableViewCellDelegate {
     func didTouchDeleteButton(indexPath: IndexPath) {
-        let keyword = Array(realm.objects(KeywordRealm.self))[indexPath.row]
+        let reversedIndex = (Array(realm.objects(KeywordRealm.self)).count-1) - indexPath.row
+        let keyword = Array(realm.objects(KeywordRealm.self))[reversedIndex]
         try! self.realm.write {
             self.realm.delete(keyword)
             self.initdata()
