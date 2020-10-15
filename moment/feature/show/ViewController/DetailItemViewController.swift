@@ -52,7 +52,7 @@ class DetailItemViewController: UIViewController {
         switch currentItemType {
         case .Book:
             titleLabel.text = currentBook.title
-            bookImageView.kf.setImage(with: URL(string: currentBook.image))
+            bookImageView.kf.setImage(with: URL(string: currentBook.imageURL))
             memoTextView.text = currentBook.memo == "" ? Constant.detailTextFieldPlaceHolder : currentBook.memo
             self.slider.value = currentBook.progress!
         case .Movie:

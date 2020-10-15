@@ -12,7 +12,7 @@ import RealmSwift
 struct Book {
     let title: String
     let link: String
-    let image: String
+    let imageURL: String
     let author: String
     let price: String
     let discount: String
@@ -22,11 +22,12 @@ struct Book {
     let desc: String
     var progress: Float?
     var memo: String?
+    var image: UIImage?
     
     init() {
         self.title = ""
         self.link = ""
-        self.image = ""
+        self.imageURL = ""
         self.author = ""
         self.price = ""
         self.discount = ""
@@ -41,7 +42,7 @@ struct Book {
     init(bookRealm: BookRealm) {
         self.title = bookRealm.title
         self.link = bookRealm.link
-        self.image = bookRealm.image
+        self.imageURL = bookRealm.image
         self.author = bookRealm.author
         self.price = bookRealm.price
         self.discount = bookRealm.discount
@@ -56,7 +57,7 @@ struct Book {
     init(naverBook: NaverBookItem) {
         self.title = naverBook.title.withoutHtml
         self.link = naverBook.link
-        self.image = naverBook.image
+        self.imageURL = naverBook.image
         self.author = naverBook.author
         self.price = naverBook.price
         self.discount = naverBook.discount
@@ -80,6 +81,15 @@ class BookRealm: Object {
     @objc dynamic var desc = ""
     @objc dynamic var progress: Float = 0
     @objc dynamic var memo = ""
+    
+//    init(book: Book) {
+//        self.title = book.title
+//        self.link = book.link
+//    }
+//    
+//    required init() {
+//        fatalError("init() has not been implemented")
+//    }
 }
 
 struct NaverBook: Codable {

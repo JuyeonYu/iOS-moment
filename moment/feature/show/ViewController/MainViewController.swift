@@ -180,7 +180,7 @@ extension MainViewController: UICollectionViewDataSource {
         
         switch showDataType {
             case ShowDataType.ProgressBook.rawValue:
-                if let url = URL(string: progressBooks[indexPath.row].image) {
+                if let url = URL(string: progressBooks[indexPath.row].imageURL) {
                     cell.itemImageView.kf.setImage(with: url)
                 } else {
                     cell.itemImageView.image = UIImage(systemName: "questionmark.square.fill")
@@ -200,7 +200,7 @@ extension MainViewController: UICollectionViewDataSource {
                 cell.progressView.isHidden = false
                 return cell
             case ShowDataType.CompleteBook.rawValue:
-                if let url = URL(string: completeBooks[indexPath.row].image) {
+                if let url = URL(string: completeBooks[indexPath.row].imageURL) {
                     cell.itemImageView.kf.setImage(with: url)
                 } else {
                     cell.itemImageView.image = UIImage(named: "questionmark.square.fill")

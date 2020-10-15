@@ -184,7 +184,7 @@ extension SearchItemViewController: UITableViewDataSource {
             cell.titleLabel.text = self.books[indexPath.row].title
             cell.descriptionLabel.text = self.books[indexPath.row].desc
             
-            if let imageURL = URL(string: self.books[indexPath.row].image) {
+            if let imageURL = URL(string: self.books[indexPath.row].imageURL) {
                 cell.bookImageView.kf.setImage(with:imageURL)
             } else {
                 cell.bookImageView.image = UIImage(named: "questionmark.square.fill")
@@ -226,7 +226,7 @@ extension SearchItemViewController: SearchItemViewControllerDelegate {
             guard let book = selectedBook else { return }
             bookRealm.title = book.title
             bookRealm.link = book.link
-            bookRealm.image = book.image
+            bookRealm.image = book.imageURL
             bookRealm.author = book.author
             bookRealm.price = book.price
             bookRealm.discount = book.discount
@@ -268,7 +268,7 @@ extension SearchItemViewController: SearchItemViewControllerDelegate {
             guard let book = selectedBook else { return }
             bookRealm.title = book.title
             bookRealm.link = book.link
-            bookRealm.image = book.image
+            bookRealm.image = book.imageURL
             bookRealm.author = book.author
             bookRealm.price = book.price
             bookRealm.discount = book.discount

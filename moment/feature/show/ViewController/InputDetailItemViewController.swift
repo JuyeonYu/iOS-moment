@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class InputDetailItemViewController: UIViewController, UINavigationControllerDelegate {
+    lazy var realm: Realm = {
+        return try! Realm()
+    }()
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var slider: UISlider!
@@ -17,7 +21,16 @@ class InputDetailItemViewController: UIViewController, UINavigationControllerDel
     @IBOutlet weak var memoTextView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
     @IBAction func didTabSaveButton(_ sender: Any) {
+        self.presentingViewController?
+            .presentingViewController?
+            .presentingViewController?
+            .dismiss(animated: true) {
+            // save data
+            self.delegate?.adddData()
+        }
     }
+    
+    weak var delegate: MainViewControllerDelegate?
     
     @IBAction func didSliderMove(_ sender: Any) {
         let stepCount = 25
