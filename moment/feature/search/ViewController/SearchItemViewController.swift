@@ -22,19 +22,26 @@ class SearchItemViewController: UIViewController {
     }()
 
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var searchResultTableView: UITableView!
+    @IBOutlet weak var searchHistoryTableView: UITableView!
+    
     var books: [Book] = [] {
         didSet {
-            self.tableView.reloadData()
+            self.searchResultTableView.reloadData()
         }
     }
     
-        var movies: [Movie] = [] {
-            didSet {
-                self.tableView.reloadData()
-            }
+    var movies: [Movie] = [] {
+        didSet {
+            self.searchResultTableView.reloadData()
         }
+    }
+    
+    var keywords: [Keyword] = [] {
+        didSet {
+            self.searchHistoryTableView.reloadData()
+        }
+    }
     
     var selectedBook: Book? = nil
     var selectedMovie: Movie? = nil
@@ -44,24 +51,68 @@ class SearchItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
+        searchResultTableView.delegate = self
+        searchResultTableView.dataSource = self
+        searchHistoryTableView.delegate = self
+        searchHistoryTableView.dataSource = self
         searchBar.delegate = self
+        
+        searchResultTableView.isHidden = false
+        searchHistoryTableView.isHidden = true
                 
-        tableView.register(UINib(nibName: "SearchItemTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchItemTableViewCell")
+        searchResultTableView.register(UINib(nibName: "SearchItemTableViewCell", bundle: nil),
+                                       forCellReuseIdentifier: "SearchItemTableViewCell")
+        
+        searchHistoryTableView.register(UINib(nibName: "SearchHistoryTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "SearchHistoryTableViewCell")
         
         searchBar.scopeButtonTitles?[0] = NSLocalizedString("book/comics", comment: "")
         searchBar.scopeButtonTitles?[1] = NSLocalizedString("movie/drama", comment: "")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.initSearchHistory()
+    }
+    
+    func initSearchHistory() {
+        var tempKeyword: [Keyword] = []
+        for keywordRealm in Array(realm.objects(KeywordRealm.self)).reversed() {
+            let keyword = Keyword(keywordRealm: keywordRealm)
+            tempKeyword.append(keyword)
+        }
+        keywords = tempKeyword
+    }
+    
+    func saveKeyword(keyword: String?) {
+        guard let keyword = keyword else { return }
+        
+        if Array(realm.objects(KeywordRealm.self)).count == 20 {
+            try! self.realm.write {
+                self.realm.delete(self.realm.objects(KeywordRealm.self).first!)
+            }
+        }
+        
+        if let duplicateKeywordRealm = self.realm.objects(KeywordRealm.self).filter("title = '\(keyword)'").first {
+            try! self.realm.write {
+                duplicateKeywordRealm.date = Date()
+            }
+        } else {
+            let keywordRealm = KeywordRealm()
+            keywordRealm.title = keyword
+            keywordRealm.date = Date()
+            try! self.realm.write {
+                self.realm.add(keywordRealm)
+            }
+        }
+        self.initSearchHistory()
     }
 }
 
 extension SearchItemViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        vc.delegate = self
-        searchBar.text = nil
-        self.present(vc, animated: false, completion: nil)
+        self.searchResultTableView.isHidden = true
+        self.searchHistoryTableView.isHidden = false
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -72,12 +123,16 @@ extension SearchItemViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let keyword = searchBar.text else { return }
+        self.saveKeyword(keyword: keyword)
         if searchBar.selectedScopeButtonIndex == 0 {
             requestNaverBookSearchAPI(keyword, start: 1)
         } else {
             requestNaverMovieSearchAPI(keyword, start: 1)
         }
         
+        self.searchResultTableView.isHidden = false
+        self.searchHistoryTableView.isHidden = true
+        searchBar.endEditing(true)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -170,44 +225,61 @@ extension SearchItemViewController: UITableViewDelegate {
 
 extension SearchItemViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchBar.selectedScopeButtonIndex == 0 {
-            return books.count
+        if !searchResultTableView.isHidden
+            && searchHistoryTableView.isHidden {
+            if searchBar.selectedScopeButtonIndex == 0 {
+                return books.count
+            } else {
+                return movies.count
+            }
         } else {
-            return movies.count
+            return keywords.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchItemTableViewCell", for: indexPath) as! SearchItemTableViewCell
-        
-        if searchBar.selectedScopeButtonIndex == 0 {
-            cell.titleLabel.text = self.books[indexPath.row].title
-            cell.descriptionLabel.text = self.books[indexPath.row].desc
+        if !searchResultTableView.isHidden
+            && searchHistoryTableView.isHidden {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SearchItemTableViewCell",
+                                                     for: indexPath) as! SearchItemTableViewCell
             
-            if let imageURL = URL(string: self.books[indexPath.row].imageURL) {
-                cell.bookImageView.kf.setImage(with:imageURL)
+            if searchBar.selectedScopeButtonIndex == 0 {
+                cell.titleLabel.text = self.books[indexPath.row].title
+                cell.descriptionLabel.text = self.books[indexPath.row].desc
+                
+                if let imageURL = URL(string: self.books[indexPath.row].imageURL) {
+                    cell.bookImageView.kf.setImage(with:imageURL)
+                } else {
+                    cell.bookImageView.image = UIImage(named: "questionmark.square.fill")
+                }
+                
+                if indexPath.row == self.books.count - 1 {
+                    requestNaverBookSearchAPI(self.searchBar.text!, start: (indexPath.row) + 2)
+                }
             } else {
-                cell.bookImageView.image = UIImage(named: "questionmark.square.fill")
+                cell.titleLabel.text = self.movies[indexPath.row].title
+                cell.descriptionLabel.text = self.movies[indexPath.row].subtitle
+                
+                if let imageURL = URL(string: self.movies[indexPath.row].image) {
+                    cell.bookImageView.kf.setImage(with:imageURL)
+                } else {
+                    cell.bookImageView.image = UIImage(named: "questionmark.square.fill")
+                }
+                
+                if indexPath.row == self.books.count - 1 {
+                    requestNaverMovieSearchAPI(self.searchBar.text!, start: (indexPath.row) + 2)
+                }
             }
-            
-            if indexPath.row == self.books.count - 1 {
-                requestNaverBookSearchAPI(self.searchBar.text!, start: (indexPath.row) + 2)
-            }
+            return cell
         } else {
-            cell.titleLabel.text = self.movies[indexPath.row].title
-            cell.descriptionLabel.text = self.movies[indexPath.row].subtitle
-            
-            if let imageURL = URL(string: self.movies[indexPath.row].image) {
-                cell.bookImageView.kf.setImage(with:imageURL)
-            } else {
-                cell.bookImageView.image = UIImage(named: "questionmark.square.fill")
-            }
-            
-            if indexPath.row == self.books.count - 1 {
-                requestNaverMovieSearchAPI(self.searchBar.text!, start: (indexPath.row) + 2)
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SearchHistoryTableViewCell",
+                                                     for: indexPath) as! SearchHistoryTableViewCell
+            let keyword = keywords[indexPath.row]
+            cell.searchKeyword.text = keyword.title
+            cell.searchDate.text = "\(keyword.date.month).\(keyword.date.day)"
+            cell.indexPath = indexPath
+            return cell
         }
-        return cell
     }
 }
 

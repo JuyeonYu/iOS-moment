@@ -321,26 +321,37 @@
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TGT-8z-Sm1">
+                                <rect key="frame" x="0.0" y="147" width="414" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" systemColor="systemGreenColor"/>
+                            </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Ve-Hf-38k">
                                 <rect key="frame" x="0.0" y="147" width="414" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" systemColor="systemPinkColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EWj-oR-CYF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="e33-tP-fu4" firstAttribute="top" secondItem="EWj-oR-CYF" secondAttribute="top" id="3MG-wI-Ku5"/>
+                            <constraint firstItem="TGT-8z-Sm1" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" id="Az3-VF-0F4"/>
                             <constraint firstItem="e33-tP-fu4" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" id="C9z-Q1-JyM"/>
                             <constraint firstItem="EWj-oR-CYF" firstAttribute="trailing" secondItem="4Ve-Hf-38k" secondAttribute="trailing" id="Eeu-0u-3en"/>
                             <constraint firstItem="4Ve-Hf-38k" firstAttribute="top" secondItem="e33-tP-fu4" secondAttribute="bottom" id="Hzu-WQ-LR9"/>
                             <constraint firstItem="e33-tP-fu4" firstAttribute="trailing" secondItem="EWj-oR-CYF" secondAttribute="trailing" id="Jsw-WY-FEb"/>
                             <constraint firstItem="EWj-oR-CYF" firstAttribute="bottom" secondItem="4Ve-Hf-38k" secondAttribute="bottom" id="K4g-dO-nmA"/>
+                            <constraint firstItem="TGT-8z-Sm1" firstAttribute="top" secondItem="e33-tP-fu4" secondAttribute="bottom" id="NTt-Ny-dPg"/>
                             <constraint firstItem="4Ve-Hf-38k" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" id="VLz-Mv-lGU"/>
+                            <constraint firstItem="EWj-oR-CYF" firstAttribute="trailing" secondItem="TGT-8z-Sm1" secondAttribute="trailing" id="hV1-oC-uuo"/>
+                            <constraint firstItem="EWj-oR-CYF" firstAttribute="bottom" secondItem="TGT-8z-Sm1" secondAttribute="bottom" id="t5n-q8-Qfa"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="e33-tP-fu4" id="hNX-9J-H1c"/>
-                        <outlet property="tableView" destination="4Ve-Hf-38k" id="IIp-Mo-VgG"/>
+                        <outlet property="searchHistoryTableView" destination="TGT-8z-Sm1" id="IWM-lT-OwU"/>
+                        <outlet property="searchResultTableView" destination="4Ve-Hf-38k" id="Els-JR-iow"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PBl-Z4-vd3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -425,6 +436,12 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
