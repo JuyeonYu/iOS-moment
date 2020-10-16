@@ -322,17 +322,33 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Ve-Hf-38k">
-                                <rect key="frame" x="0.0" y="147" width="414" height="675"/>
+                                <rect key="frame" x="0.0" y="147" width="414" height="676"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemPinkColor"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycf-KI-q9e">
-                                <rect key="frame" x="20" y="822" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="didTapManualInputButton:" destination="m3L-mn-iqO" eventType="touchUpInside" id="uBF-6Q-4pE"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXY-LY-3Fl">
+                                <rect key="frame" x="20" y="823" width="374" height="29"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gr0-4J-gkI">
+                                        <rect key="frame" x="0.0" y="0.0" width="299" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycf-KI-q9e">
+                                        <rect key="frame" x="299" y="0.0" width="75" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="didTapManualInputButton:" destination="m3L-mn-iqO" eventType="touchUpInside" id="uBF-6Q-4pE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="gr0-4J-gkI" firstAttribute="width" secondItem="KXY-LY-3Fl" secondAttribute="width" multiplier="0.8" id="tWO-Q1-Ulk"/>
+                                </constraints>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TGT-8z-Sm1">
                                 <rect key="frame" x="0.0" y="147" width="414" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -342,23 +358,25 @@
                         <viewLayoutGuide key="safeArea" id="EWj-oR-CYF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ycf-KI-q9e" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" constant="20" id="0Tc-ps-spU"/>
                             <constraint firstItem="e33-tP-fu4" firstAttribute="top" secondItem="EWj-oR-CYF" secondAttribute="top" id="3MG-wI-Ku5"/>
                             <constraint firstItem="TGT-8z-Sm1" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" id="Az3-VF-0F4"/>
                             <constraint firstItem="e33-tP-fu4" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" id="C9z-Q1-JyM"/>
                             <constraint firstItem="EWj-oR-CYF" firstAttribute="trailing" secondItem="4Ve-Hf-38k" secondAttribute="trailing" id="Eeu-0u-3en"/>
+                            <constraint firstItem="KXY-LY-3Fl" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" constant="20" id="G1X-WQ-vcY"/>
                             <constraint firstItem="4Ve-Hf-38k" firstAttribute="top" secondItem="e33-tP-fu4" secondAttribute="bottom" id="Hzu-WQ-LR9"/>
-                            <constraint firstItem="ycf-KI-q9e" firstAttribute="top" secondItem="4Ve-Hf-38k" secondAttribute="bottom" id="IXQ-wC-bcf"/>
                             <constraint firstItem="e33-tP-fu4" firstAttribute="trailing" secondItem="EWj-oR-CYF" secondAttribute="trailing" id="Jsw-WY-FEb"/>
                             <constraint firstItem="TGT-8z-Sm1" firstAttribute="top" secondItem="e33-tP-fu4" secondAttribute="bottom" id="NTt-Ny-dPg"/>
-                            <constraint firstItem="EWj-oR-CYF" firstAttribute="bottom" secondItem="ycf-KI-q9e" secondAttribute="bottom" constant="10" id="NlJ-3I-zXb"/>
                             <constraint firstItem="4Ve-Hf-38k" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" id="VLz-Mv-lGU"/>
+                            <constraint firstItem="EWj-oR-CYF" firstAttribute="trailing" secondItem="KXY-LY-3Fl" secondAttribute="trailing" constant="20" id="aqL-fg-Yl5"/>
+                            <constraint firstItem="EWj-oR-CYF" firstAttribute="bottom" secondItem="KXY-LY-3Fl" secondAttribute="bottom" constant="10" id="g6d-uL-jSD"/>
                             <constraint firstItem="EWj-oR-CYF" firstAttribute="trailing" secondItem="TGT-8z-Sm1" secondAttribute="trailing" id="hV1-oC-uuo"/>
                             <constraint firstItem="EWj-oR-CYF" firstAttribute="bottom" secondItem="TGT-8z-Sm1" secondAttribute="bottom" id="t5n-q8-Qfa"/>
+                            <constraint firstItem="KXY-LY-3Fl" firstAttribute="top" secondItem="4Ve-Hf-38k" secondAttribute="bottom" id="y1k-UK-VJi"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="manualInputButton" destination="ycf-KI-q9e" id="oWY-H0-wWL"/>
+                        <outlet property="manualInputLabel" destination="gr0-4J-gkI" id="sx4-qz-FhU"/>
                         <outlet property="searchBar" destination="e33-tP-fu4" id="hNX-9J-H1c"/>
                         <outlet property="searchHistoryTableView" destination="TGT-8z-Sm1" id="IWM-lT-OwU"/>
                         <outlet property="searchResultTableView" destination="4Ve-Hf-38k" id="Els-JR-iow"/>
@@ -440,6 +458,9 @@
         </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

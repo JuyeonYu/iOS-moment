@@ -16,6 +16,7 @@ protocol SearchItemViewControllerDelegate: class {
 
 class SearchItemViewController: UIViewController {
     
+    @IBOutlet weak var manualInputLabel: UILabel!
     @IBOutlet weak var manualInputButton: UIButton!
     @IBAction func didTapManualInputButton(_ sender: Any) {
         print("didTapManualInputButton")
@@ -76,6 +77,7 @@ class SearchItemViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        manualInputLabel.text = NSLocalizedString("no what you want?", comment: "")
         manualInputButton.setTitle(NSLocalizedString("input manually",
                                                      comment: ""), for: .normal)
         self.initSearchHistory()

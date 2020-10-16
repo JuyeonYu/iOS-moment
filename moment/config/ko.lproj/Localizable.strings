@@ -30,3 +30,5 @@
 "show 20 keywords" = "최근 검색한 20개의 키워드가 저장됩니다";
 "input manually" = "직접 입력";
 "no result in searching" = "검색 시 원하는 결과가 없으세요?";
+"no what you want?" = "원하는 검색 결과가 없으신가요?";
+"search result" = "검색 결과";
