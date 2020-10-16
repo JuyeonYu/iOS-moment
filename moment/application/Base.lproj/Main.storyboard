@@ -321,34 +321,44 @@
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Ve-Hf-38k">
+                                <rect key="frame" x="0.0" y="147" width="414" height="675"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" systemColor="systemPinkColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycf-KI-q9e">
+                                <rect key="frame" x="20" y="822" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTapManualInputButton:" destination="m3L-mn-iqO" eventType="touchUpInside" id="uBF-6Q-4pE"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TGT-8z-Sm1">
                                 <rect key="frame" x="0.0" y="147" width="414" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemGreenColor"/>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Ve-Hf-38k">
-                                <rect key="frame" x="0.0" y="147" width="414" height="715"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="sectionIndexBackgroundColor" systemColor="systemPinkColor"/>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EWj-oR-CYF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ycf-KI-q9e" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" constant="20" id="0Tc-ps-spU"/>
                             <constraint firstItem="e33-tP-fu4" firstAttribute="top" secondItem="EWj-oR-CYF" secondAttribute="top" id="3MG-wI-Ku5"/>
                             <constraint firstItem="TGT-8z-Sm1" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" id="Az3-VF-0F4"/>
                             <constraint firstItem="e33-tP-fu4" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" id="C9z-Q1-JyM"/>
                             <constraint firstItem="EWj-oR-CYF" firstAttribute="trailing" secondItem="4Ve-Hf-38k" secondAttribute="trailing" id="Eeu-0u-3en"/>
                             <constraint firstItem="4Ve-Hf-38k" firstAttribute="top" secondItem="e33-tP-fu4" secondAttribute="bottom" id="Hzu-WQ-LR9"/>
+                            <constraint firstItem="ycf-KI-q9e" firstAttribute="top" secondItem="4Ve-Hf-38k" secondAttribute="bottom" id="IXQ-wC-bcf"/>
                             <constraint firstItem="e33-tP-fu4" firstAttribute="trailing" secondItem="EWj-oR-CYF" secondAttribute="trailing" id="Jsw-WY-FEb"/>
-                            <constraint firstItem="EWj-oR-CYF" firstAttribute="bottom" secondItem="4Ve-Hf-38k" secondAttribute="bottom" id="K4g-dO-nmA"/>
                             <constraint firstItem="TGT-8z-Sm1" firstAttribute="top" secondItem="e33-tP-fu4" secondAttribute="bottom" id="NTt-Ny-dPg"/>
+                            <constraint firstItem="EWj-oR-CYF" firstAttribute="bottom" secondItem="ycf-KI-q9e" secondAttribute="bottom" constant="10" id="NlJ-3I-zXb"/>
                             <constraint firstItem="4Ve-Hf-38k" firstAttribute="leading" secondItem="EWj-oR-CYF" secondAttribute="leading" id="VLz-Mv-lGU"/>
                             <constraint firstItem="EWj-oR-CYF" firstAttribute="trailing" secondItem="TGT-8z-Sm1" secondAttribute="trailing" id="hV1-oC-uuo"/>
                             <constraint firstItem="EWj-oR-CYF" firstAttribute="bottom" secondItem="TGT-8z-Sm1" secondAttribute="bottom" id="t5n-q8-Qfa"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="manualInputButton" destination="ycf-KI-q9e" id="oWY-H0-wWL"/>
                         <outlet property="searchBar" destination="e33-tP-fu4" id="hNX-9J-H1c"/>
                         <outlet property="searchHistoryTableView" destination="TGT-8z-Sm1" id="IWM-lT-OwU"/>
                         <outlet property="searchResultTableView" destination="4Ve-Hf-38k" id="Els-JR-iow"/>

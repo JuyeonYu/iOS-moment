@@ -12,11 +12,14 @@ import RealmSwift
 
 protocol SearchItemViewControllerDelegate: class {
     func saveData(progress: Float, memo: String?, type: NaverSearchType)
-    func searchKeyword(keyword: String)
 }
 
 class SearchItemViewController: UIViewController {
     
+    @IBOutlet weak var manualInputButton: UIButton!
+    @IBAction func didTapManualInputButton(_ sender: Any) {
+        print("didTapManualInputButton")
+    }
     lazy var realm: Realm = {
         return try! Realm()
     }()
@@ -72,6 +75,9 @@ class SearchItemViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        manualInputButton.setTitle(NSLocalizedString("input manually",
+                                                     comment: ""), for: .normal)
         self.initSearchHistory()
     }
     
@@ -113,6 +119,8 @@ extension SearchItemViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchResultTableView.isHidden = true
         self.searchHistoryTableView.isHidden = false
+        
+        self.initSearchHistory()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -186,63 +194,114 @@ extension SearchItemViewController: UISearchBarDelegate {
             self.movies = self.movies + tempMovies
         }
     }
+    
+    func searchKeyword(keyword: String) {
+        books.removeAll()
+        movies.removeAll()
+        self.searchBar.text = keyword
+        searchBarSearchButtonClicked(searchBar)
+    }
 }
 
 extension SearchItemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searchBar.selectedScopeButtonIndex == 0 {
-            selectedBook = self.books[indexPath.row]
-            guard self.realm.objects(BookRealm.self).filter("isbn = '\(selectedBook!.isbn)'").first == nil else {
-                let alert = UIAlertController(title: NSLocalizedString("duplicate", comment: ""),
-                                              message: NSLocalizedString("can't save duplicate item", comment: ""),
-                                              preferredStyle: .alert)
-                let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""),
-                                       style: .default)
-                alert.addAction(ok)
-                self.present(alert, animated: true)
-                return
+        switch tableView {
+        case searchResultTableView:
+            if searchBar.selectedScopeButtonIndex == 0 {
+                selectedBook = self.books[indexPath.row]
+                guard self.realm.objects(BookRealm.self).filter("isbn = '\(selectedBook!.isbn)'").first == nil else {
+                    let alert = UIAlertController(title: NSLocalizedString("duplicate", comment: ""),
+                                                  message: NSLocalizedString("can't save duplicate item", comment: ""),
+                                                  preferredStyle: .alert)
+                    let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+                                           style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true)
+                    return
+                }
+            } else {
+                selectedMovie = self.movies[indexPath.row]
+                guard self.realm.objects(MovieRealm.self).filter("link = '\(selectedMovie!.link)'").first == nil else {
+                    let alert = UIAlertController(title: NSLocalizedString("duplicate", comment: ""),
+                                                  message: NSLocalizedString("can't save duplicate item", comment: ""),
+                                                  preferredStyle: .alert)
+                    let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+                                           style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true)
+                    return
+                }
             }
-        } else {
-            selectedMovie = self.movies[indexPath.row]
-            guard self.realm.objects(MovieRealm.self).filter("link = '\(selectedMovie!.link)'").first == nil else {
-                let alert = UIAlertController(title: NSLocalizedString("duplicate", comment: ""),
-                                              message: NSLocalizedString("can't save duplicate item", comment: ""),
-                                              preferredStyle: .alert)
-                let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""),
-                                       style: .default)
-                alert.addAction(ok)
-                self.present(alert, animated: true)
-                return
-            }
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectBookMarkViewController") as! SelectBookMarkViewController
+            vc.delegate = self
+            vc.selectedType = searchBar.selectedScopeButtonIndex == 0 ? .Book : .Movie
+            self.present(vc, animated: true, completion: nil)
+            
+        case searchHistoryTableView:
+            let keyword = keywords[indexPath.row].title
+            self.searchKeyword(keyword: keyword)
+        default:
+            break
         }
-        
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectBookMarkViewController") as! SelectBookMarkViewController
-        vc.delegate = self
-        vc.selectedType = searchBar.selectedScopeButtonIndex == 0 ? .Book : .Movie
-        self.present(vc, animated: true, completion: nil)
+    }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        switch tableView {
+//        case searchResultTableView:
+//            return UIView()
+//        case searchHistoryTableView:
+//            let searchHeaderView = SearchHeaderView.init()
+//            return searchHeaderView
+//        default:
+//            return UIView()
+//        }
+//    }
+    
+//    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//        switch tableView {
+//        case searchResultTableView:
+//            return ""
+//        case searchHistoryTableView:
+//            return NSLocalizedString("show 20 keywords", comment: "")
+//        default:
+//            return ""
+//        }
+//    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch tableView {
+        case searchResultTableView:
+            return NSLocalizedString("search result", comment: "")
+        case searchHistoryTableView:
+            return NSLocalizedString("show 20 keywords", comment: "")
+        default:
+            return ""
+        }
     }
 }
 
 extension SearchItemViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !searchResultTableView.isHidden
-            && searchHistoryTableView.isHidden {
+        switch tableView {
+        case searchResultTableView:
             if searchBar.selectedScopeButtonIndex == 0 {
                 return books.count
             } else {
                 return movies.count
             }
-        } else {
+        case searchHistoryTableView:
             return keywords.count
+        default:
+            return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if !searchResultTableView.isHidden
-            && searchHistoryTableView.isHidden {
+        switch tableView {
+        case searchResultTableView:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SearchItemTableViewCell",
                                                      for: indexPath) as! SearchItemTableViewCell
-            
             if searchBar.selectedScopeButtonIndex == 0 {
                 cell.titleLabel.text = self.books[indexPath.row].title
                 cell.descriptionLabel.text = self.books[indexPath.row].desc
@@ -271,7 +330,8 @@ extension SearchItemViewController: UITableViewDataSource {
                 }
             }
             return cell
-        } else {
+            
+        case searchHistoryTableView:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SearchHistoryTableViewCell",
                                                      for: indexPath) as! SearchHistoryTableViewCell
             let keyword = keywords[indexPath.row]
@@ -279,18 +339,13 @@ extension SearchItemViewController: UITableViewDataSource {
             cell.searchDate.text = "\(keyword.date.month).\(keyword.date.day)"
             cell.indexPath = indexPath
             return cell
+        default:
+            return UITableViewCell()
         }
     }
 }
 
 extension SearchItemViewController: SearchItemViewControllerDelegate {
-    func searchKeyword(keyword: String) {
-        books.removeAll()
-        movies.removeAll()
-        self.searchBar.text = keyword
-        searchBarSearchButtonClicked(searchBar)
-    }
-    
     func saveData(progress: Float, memo: String?, type: NaverSearchType) {
         switch type {
         case .Book:
