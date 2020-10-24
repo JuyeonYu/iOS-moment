@@ -252,29 +252,6 @@ extension SearchItemViewController: UITableViewDelegate {
         }
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        switch tableView {
-//        case searchResultTableView:
-//            return UIView()
-//        case searchHistoryTableView:
-//            let searchHeaderView = SearchHeaderView.init()
-//            return searchHeaderView
-//        default:
-//            return UIView()
-//        }
-//    }
-    
-//    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        switch tableView {
-//        case searchResultTableView:
-//            return ""
-//        case searchHistoryTableView:
-//            return NSLocalizedString("show 20 keywords", comment: "")
-//        default:
-//            return ""
-//        }
-//    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch tableView {
         case searchResultTableView:
@@ -344,9 +321,21 @@ extension SearchItemViewController: UITableViewDataSource {
             cell.searchKeyword.text = keyword.title
             cell.searchDate.text = "\(keyword.date.month).\(keyword.date.day)"
             cell.indexPath = indexPath
+            cell.delegate = self
             return cell
         default:
             return UITableViewCell()
+        }
+    }
+}
+extension SearchItemViewController: SearchHistoryTableViewCellDelegate {
+    func didTouchDeleteButton(indexPath: IndexPath) {
+        let selectedKeyword = self.keywords[indexPath.row]
+        self.keywords.remove(at: indexPath.row)
+        
+        let keyword = self.realm.objects(KeywordRealm.self).filter("title = '\(selectedKeyword.title)'").first!
+        try! self.realm.write {
+            self.realm.delete(keyword)
         }
     }
 }
