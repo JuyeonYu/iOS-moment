@@ -313,7 +313,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="prominent" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e33-tP-fu4">
+                            <searchBar contentMode="redraw" searchBarStyle="prominent" showsCancelButton="YES" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e33-tP-fu4">
                                 <rect key="frame" x="0.0" y="44" width="414" height="103"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>

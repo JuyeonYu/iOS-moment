@@ -159,6 +159,10 @@ extension SearchItemViewController: UISearchBarDelegate {
         }
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
+    }
+    
     fileprivate func requestNaverBookSearchAPI(_ keyword: String, start: Int) {
         NetworkManager.sharedInstance.requestNaverBookList(keyword: keyword, start: start) { (result) in
             guard let naverBooks = result as? NaverBook else {
