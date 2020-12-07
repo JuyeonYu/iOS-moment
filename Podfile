@@ -11,5 +11,6 @@ pod 'Alamofire', '~> 5.0.0-rc.3'
 pod 'RealmSwift'
 pod 'Kingfisher', '~> 5.15'
 pod 'IQKeyboardManagerSwift'
+pod 'Google-Mobile-Ads-SDK'
 
 end

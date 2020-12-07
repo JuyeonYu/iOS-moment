@@ -10,6 +10,8 @@ import Foundation
 
 class Constant {
     static let detailTextFieldPlaceHolder = "메모"
+    static let googleADModID = "ca-app-pub-7604048409167711/3193147154"
+    
 }
 
 enum NaverSearchType: CaseIterable {
